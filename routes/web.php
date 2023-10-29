@@ -23,7 +23,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('home');
     })->name('dashboard');
 });
 // ログイン後のユーザー名のプルダウンメニューが機能していないため、以下を追加

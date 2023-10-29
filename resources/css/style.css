@@ -1,18 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* @import url(style.css); */
-[x-cloak] {
-  display: none;
-}
-
 .tabs {
-  /* margin-top: 50px; */
+  margin-top: 50px;
   padding-bottom: 40px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 80%;
+  width: 700px;
   margin: 0 auto;
 }
 
@@ -46,7 +37,6 @@ input[name="tab_item"] {
 .tab_content {
   display: none;
   padding: 40px 40px 0;
-  height: 20vw;
   clear: both;
   overflow: hidden;
 }
@@ -63,24 +53,4 @@ input[name="tab_item"] {
 .tabs input:checked+.tab_item {
   background-color: #5ab4bd;
   color: #fff;
-}
-
-textarea#target {
-  height: 15vw;
-}
-
-.test {
-  text-align: center;
-}
-
-textarea {
-  width: 100%;
-  
-  font-size: 30px;
-  border: none;
-  background-color: #FFF;
-  outline: none;
-  resize: none;
-  overflow: hidden;
-  transition: all .2s;
 }
