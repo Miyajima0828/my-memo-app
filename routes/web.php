@@ -26,7 +26,7 @@ Route::middleware([
         return view('home');
     })->name('dashboard');
 });
-// ログイン後のユーザー名のプルダウンメニューが機能していないため、以下を追加
+// ログイン後のユーザー名のドロップダウンメニューが機能していないため、以下を追加
 Livewire::setScriptRoute(function ($handle) {
     return Route::get('/laravel/testproject/vendor/livewire/livewire/dist/livewire.js', $handle);
 });
