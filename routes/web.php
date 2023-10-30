@@ -23,10 +23,14 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('home');
+        return view('dashboard');
     })->name('dashboard');
 });
+
 // ログイン後のユーザー名のドロップダウンメニューが機能していないため、以下を追加
 Livewire::setScriptRoute(function ($handle) {
     return Route::get('/laravel/testproject/vendor/livewire/livewire/dist/livewire.js', $handle);
 });
+
+// ログイン後のアカウント情報を表示させるためのルーティング
+Route::get('user/profile', 'UserController@profile')->name('user.profile');
