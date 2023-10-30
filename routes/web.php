@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,4 +33,5 @@ Livewire::setScriptRoute(function ($handle) {
 });
 
 // ログイン後のアカウント情報を表示させるためのルーティング
-Route::get('user/profile', 'UserController@profile')->name('user.profile');
+Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::resource('/user', 'UserController');
