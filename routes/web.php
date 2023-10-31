@@ -33,5 +33,5 @@ Livewire::setScriptRoute(function ($handle) {
 });
 
 // ログイン後のアカウント情報を表示させるためのルーティング
-Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
-Route::resource('/user', 'UserController');
+// Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+// Route::resource('/user', 'UserController');
