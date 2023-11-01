@@ -6,10 +6,13 @@
 [x-cloak] {
   display: none;
 }
-
+/* 検索バーのスタイル */
+.search {
+    width: 80%;
+    margin: 4% 4% ;
+}
 /*タブ切り替え全体のスタイル*/
-.tabs {
-    margin-top: 2vw;
+.tabs  {
     padding-bottom: 40px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
