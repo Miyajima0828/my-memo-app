@@ -1,43 +1,37 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+<head> 
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Scripts -->
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> <!-- Scripts
+        -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
-</head>
+    </head>
 
-<body class="font-sans antialiased">
-    <div class="flex">
-        <!-- 画面左部分 -->
-        <div class="flex-col">
-            <div>
+    <body class="font-sans antialiased "> 
+        <!-- 画面上部分 -->
+        <div class="flex items-center h-16 mr-16">
+            <div class="basis-1/5">
                 @livewire('navigation-menu')
-                @livewireScripts
             </div>
-            <div class="category">
-
+            <div class="text-right basis-4/5">
+                <form action="#" method="get">
+                    <input class="w-2/5 h-8 text-center" type="text" name="search" placeholder="検索">
+                </form>
             </div>
         </div>
-        <!-- 画面右部分 -->
-        <div class="flex-col mr-12 ml-auto">
 
-            <div class="search ">
-                <form action="#" method="get">
-                    <input class="text-center" type="text" name="search" value="検索">
-                </form>
+        <!-- 画面下部分 -->
+        <div class="flex ">
+
+            <div class="category">
             </div>
             <div class="tabs">
                 <input id="all" type="radio" name="tab_item" checked>
@@ -76,8 +70,15 @@
                     </div>
                 </div>
             </div>
+        
         </div>
-    </div>
-</body>
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
+        </div>
+        @stack('modals')
+        @livewireScripts
+    </body>
 
-</html>
+    </html>
