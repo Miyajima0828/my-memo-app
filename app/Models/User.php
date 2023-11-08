@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // mainモデルとリレーション
+    public function mains()
+    {
+        return $this -> hasMany(Main::class);
+    }
 }

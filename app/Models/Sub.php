@@ -9,4 +9,10 @@ class Sub extends Model
 {
     protected $table = 'sub';
     use HasFactory;
+
+    // mainモデルとリレーション
+    public function main()
+    {
+        return $this->belongsTo(Main::class);
+    }
 }
