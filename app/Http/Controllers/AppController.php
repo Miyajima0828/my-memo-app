@@ -14,12 +14,22 @@ class AppController extends Controller
     {
         // ログインしているユーザーのIDを取得
         $userId = auth()->user()->id;
-        // Userモデルを使って、useIdが該当するmainカラムの全データを取得
-        $userMain = User::all($userId);
+        // Userモデルを使って、ログインしているユーザーに関連するMainカラムのデータを取得
+        $user = User::with(['mains' => function ($query) {
+            // Mainモデルの中から取得したいカラムを指定
+            $query->select('main');
+        }])->find($userId);
+
+
+        // ログインしているユーザーに関連するMainカラムのデータを取得
+        $userMain = $user->mains;
+
+        // $user = User::with('mains')->find($userId);
+        // $userMain = $user->all('main');
 
         // Mainモデルを使って、$userMainに該当するsubの全データを取得
 
-        dd($userMain);
+        dd($user);
         return view('views.components.categories', compact('userMain'));
     }
 
@@ -29,7 +39,7 @@ class AppController extends Controller
         $texts = Sub::all('text');
         $user = User::all();
         // $texts = Text::select('text')->get();
-        // dd($texts);
+        dd($texts);
         return view('layouts.app', compact('texts', 'user'));
     }
 }
