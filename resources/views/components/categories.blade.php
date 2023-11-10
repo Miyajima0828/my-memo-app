@@ -1,13 +1,18 @@
-@php
-$mainCount = count($mainData);
+{{-- @php
+$userMainCount = count($userMain);
 @endphp
 
-<!-- もしユーザーがDBにmain_idをcount=5持っていたら -->
-@if ($mainDataCount == 5)
-    @foreach ($mainData as $main)
-        @foreach ($subData as $sub)
+<p>$userMainCount</p>
+@foreach($userMain as $main)
+    <p>{{$main->main}}</p>
+                        @endforeach --}}
+
+{{-- <!-- もしユーザーがDBにmain_idをcount=5持っていたら -->
+@if ($userMainCount == 5)
+    @foreach ($userMain as $main)
+        @foreach ($userSub as $sub)
 <!-- 各mainカテゴリーに該当するsubカテゴリーが5個未満なら、 -->
-            @if ($subDataCount < 5)
+            @if ($userSubCount < 5)
 <!-- 各mainカテゴリーの右端に＋マーク表示し、
 mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの下にp,smallで表示 -->
                 <h2>{{ $main }}<span>＋</span></h2>
@@ -25,12 +30,12 @@ mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの�
 
 
 <!-- もしユーザーがmain_idをcount=1～4持っていたら -->
-@if ($mainDataCount >= 1 && 4 >= $mainDataCount)
+@if ($userMainCount >= 1 && 4 >= $userMainCount)
     <p>メインカテゴリー<span>＋</span></p>
-    @foreach ($mainData as $main)
-        @foreach ($subData as $sub)
+    @foreach ($userMain as $main)
+        @foreach ($userSub as $sub)
 <!-- 各mainカテゴリーに該当するsubカテゴリーが5個未満なら、 -->
-            @if ($subDataCount < 5)
+            @if ($userSubCount < 5)
 <!-- 各mainカテゴリーの右端に＋マーク表示し、
 mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの下にp,smallで表示 -->
                     <h2>{{ $main }}<span>＋</span></h2>
@@ -44,19 +49,19 @@ mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの�
             @endif
         @endforeach
     @endforeach
-@endif
+@endif --}}
 
 
 <!-- もしユーザーがmain_idをcount=0持っていたら
 左寄せで"メインカテゴリー"と表示、右端に＋マークが表示される -->
-@if ($mainDataCount == 0)
+{{-- @if ($userMainCount == 0)
     <p>メインカテゴリー<span>＋</span></p>
-@endif
+@endif --}}
 
 
 <!-- 左寄せで"メインカテゴリー"と表示されている行の、右端の＋マークを押すと
 一番下のsubカテゴリーの下にカーソルが移り、テキストが入力できるようになる -->
-<input type="text" name="sub">
+{{-- <input type="text" name="sub"> --}}
 
 <!-- テキストを入力しエンターを押すと
 その場所へ、打ち込んだテキストがpでmainカテゴリーとして表示され、

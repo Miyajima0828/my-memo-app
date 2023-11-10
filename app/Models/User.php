@@ -62,6 +62,6 @@ class User extends Authenticatable
     // mainモデルとリレーション
     public function mains()
     {
-        return $this -> hasMany(Main::class);
+        return $this->hasMany(Main::class);
     }
 }
