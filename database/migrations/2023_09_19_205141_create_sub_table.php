@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('sub', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('main_id');
             $table->string('sub',50);
+            $table->string('text',10000)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
