@@ -1,13 +1,13 @@
-{{-- @php
+@php
 $userMainCount = count($userMain);
 @endphp
 
 <p>$userMainCount</p>
 @foreach($userMain as $main)
-    <p>{{$main->main}}</p>
-                        @endforeach --}}
+    <p>{{$main}}</p>
+@endforeach
 
-{{-- <!-- もしユーザーがDBにmain_idをcount=5持っていたら -->
+<!-- もしユーザーがDBにmain_idをcount=5持っていたら -->
 @if ($userMainCount == 5)
     @foreach ($userMain as $main)
         @foreach ($userSub as $sub)
