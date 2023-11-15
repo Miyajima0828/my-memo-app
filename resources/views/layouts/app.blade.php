@@ -42,7 +42,7 @@
                 <label class="tab_item" for="document">書類</label>
                 <div class="tab_content" id="all_content">
                     <div class="tab_content_description">
-                        <p class="c-txtsp">総合の内容がここに入ります</p>
+                        <a href="http://localhost/testproject/public/dashboard/categories"><p class="c-txtsp">総合の内容がここに入ります</p></a>
                         @foreach($texts as $text)
                             <p>{{$text->text}}</p>
                         @endforeach

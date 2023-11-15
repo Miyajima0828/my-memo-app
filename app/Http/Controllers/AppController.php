@@ -15,23 +15,39 @@ class AppController extends Controller
         // ログインしているユーザーのIDを取得
         $userId = auth()->user()->id;
        
-        // Userモデルから$userIdに該当するレコードを取得
-        $user = User::find($userId);
-
-        // $userが存在する場合にのみ処理を続行
-        if ($user) {
-            // 取得したUserモデルに関連するMainカラムのデータを取得
-            $userMain = $user->mains()->pluck('main')->toArray();
+        // ログインしているユーザーのmainデータ取得
+        // Userモデルから$idに該当するレコードを取得
+        $userIdRecords = User::find($userId);
+        // 取得したUserモデルに関連するMainカラムのデータを配列として取得
+        if($userIdRecords) {
+            $userMain = $userIdRecords->mains()->pluck('main')->toArray();
         }
 
-        // ログインしているuserのSubデータを取得
-        $test = Main::find(1);
-        foreach($test->subs as $data) {
-            dd($data->sub);
+        // ログインしているユーザーのsubデータを取得
+        // Mainモデルから$idに該当するレコードを取得      
+        $mainIdRecords = Main::where('user_id', $userId)->get();
+        // $mainIdRecordからMainモデルのidを取得
+        $mainIds = $mainIdRecords->pluck('id')->toArray();
+        // Subモデルからsubカラムを$userSub[]=[ユーザーが持つ1番目のmain_idの値、ユーザーが持つ2番目の・・・]として取得
+        $mainIdArray = [];
+        $userSub = [];
+        $testCount = [];
+        foreach($mainIds as $mainId) {
+            $mainIdArray[] = $mainId;  
+            $userSub[$mainId] = Sub::where('main_id', $mainId)->get()->toArray();
+            $testCount[$mainId] = count($userSub[$mainId]);
         }
+        // dd($userMain);
+        // dd($mainIdRecords);
+        // dd($testCount);
+        // $test = $userSub[1];
+        // dd($test);
+        // dd($userSub);
+        // dd($mainIdArray);
 
-
-
+        // foreach($test->subs as $data) {
+        //     dd($test);
+            // dd($data->sub);
 
         // // Userモデルを使って、ログインしているユーザーに関連するMainカラムのデータを取得
         // $user = User::with(['mains' => function ($query) {
@@ -39,17 +55,8 @@ class AppController extends Controller
         //     $query->select('main');
         // }])->find($userId);
 
-
-        // // ログインしているユーザーに関連するMainカラムのデータを取得
-        // $userMain = $user->mains;
-
-        // $user = User::with('mains')->find($userId);
-        // $userMain = $user->all('main');
-
-        // Mainモデルを使って、$userMainに該当するsubの全データを取得
-
         // dd($userMain);
-        return view('components.categories', compact('userMain'));
+        return view('components.categories', compact('userMain', 'mainIdArray', 'userSub'));
     }
 
     // とりあえず、生のモデルから変数としてひっぱる
@@ -58,7 +65,7 @@ class AppController extends Controller
         $texts = Sub::all('text');
         $user = User::all();
         // $texts = Text::select('text')->get();
-        dd($texts);
+        // dd($texts);
         return view('layouts.app', compact('texts', 'user'));
     }
 }
