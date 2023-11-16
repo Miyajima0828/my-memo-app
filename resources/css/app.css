@@ -7,8 +7,7 @@
 }
 
 /*タブ切り替え全体のスタイル*/
-.tabs {
-    margin-top: 2vw;
+.tabs  {
     padding-bottom: 40px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -67,4 +66,16 @@ input[name="tab_item"] {
 .tabs input:checked+.tab_item {
     background-color: #5ab4bd;
     color: #fff;
+<<<<<<< HEAD
+=======
+}
+.search-button {
+    border: none;  background: none;  outline: none;
+    color: #999;  font-weight: 900;  font-family: "Font Awesome 5 Free";
+
+    transition: color 0.3s ease 0s;
+}
+.search-button:hover {
+    color: #333;
+>>>>>>> 4bdaac1e8c78fbc1386a260863310dbb6722d427
 }
