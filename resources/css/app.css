@@ -67,3 +67,12 @@ input[name="tab_item"] {
     background-color: #5ab4bd;
     color: #fff;
 }
+.search-button {
+    border: none;  background: none;  outline: none;
+    color: #999;  font-weight: 900;  font-family: "Font Awesome 5 Free";
+
+    transition: color 0.3s ease 0s;
+}
+.search-button:hover {
+    color: #333;
+}
