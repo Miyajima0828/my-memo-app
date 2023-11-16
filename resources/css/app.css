@@ -76,3 +76,6 @@ input[name="tab_item"] {
 .search-button:hover {
     color: #333;
 }
+#hiddenInput {
+    display: none;
+}
