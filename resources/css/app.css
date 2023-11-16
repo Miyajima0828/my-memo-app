@@ -66,8 +66,6 @@ input[name="tab_item"] {
 .tabs input:checked+.tab_item {
     background-color: #5ab4bd;
     color: #fff;
-<<<<<<< HEAD
-=======
 }
 .search-button {
     border: none;  background: none;  outline: none;
@@ -77,5 +75,4 @@ input[name="tab_item"] {
 }
 .search-button:hover {
     color: #333;
->>>>>>> 4bdaac1e8c78fbc1386a260863310dbb6722d427
 }

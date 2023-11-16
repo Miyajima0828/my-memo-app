@@ -56,16 +56,16 @@ class AppController extends Controller
         // }])->find($userId);
 
         // dd($userMain);
-        return view('components.categories', compact('userMain', 'mainIdArray', 'userSub'));
+        return view('dashboard', compact('userMain', 'mainIdArray', 'userSub'));
     }
 
     // とりあえず、生のモデルから変数としてひっぱる
-    public function getTest()
-    {
-        $texts = Sub::all('text');
-        $user = User::all();
-        // $texts = Text::select('text')->get();
-        // dd($texts);
-        return view('layouts.app', compact('texts', 'user'));
-    }
+//     public function getTest()
+//     {
+//         $texts = Sub::all('text');
+//         $user = User::all();
+//         // $texts = Text::select('text')->get();
+//         // dd($texts);
+//         return view('layouts.app', compact('texts', 'user'));
+//     }
 }
