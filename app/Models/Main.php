@@ -11,6 +11,9 @@ class Main extends Model
     protected $table = 'main';
     use HasFactory;
 
+    // DBにsaveするときに大量代入するため
+    protected $fillable = ['main', 'user_id'];
+
     // userモデルとリレーション
     public function user()
     {
