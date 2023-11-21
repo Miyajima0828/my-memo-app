@@ -14,12 +14,12 @@ class AppController extends Controller
     {
         // ログインしているユーザーのIDを取得
         $userId = auth()->user()->id;
-       
+
         // ログインしているユーザーのmainデータ取得
         // Userモデルから$idに該当するレコードを取得
         $userIdRecords = User::find($userId);
         // 取得したUserモデルに関連するMainカラムのデータを配列として取得
-        if($userIdRecords) {
+        if ($userIdRecords) {
             $userMain = $userIdRecords->mains()->pluck('main')->toArray();
         }
 
@@ -32,8 +32,8 @@ class AppController extends Controller
         $mainIdArray = [];
         $userSub = [];
         $testCount = [];
-        foreach($mainIds as $mainId) {
-            $mainIdArray[] = $mainId;  
+        foreach ($mainIds as $mainId) {
+            $mainIdArray[] = $mainId;
             $userSub[$mainId] = Sub::where('main_id', $mainId)->get()->toArray();
             $testCount[$mainId] = count($userSub[$mainId]);
         }
@@ -47,7 +47,7 @@ class AppController extends Controller
 
         // foreach($test->subs as $data) {
         //     dd($test);
-            // dd($data->sub);
+        // dd($data->sub);
 
         // // Userモデルを使って、ログインしているユーザーに関連するMainカラムのデータを取得
         // $user = User::with(['mains' => function ($query) {
