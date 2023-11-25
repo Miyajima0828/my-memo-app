@@ -10,18 +10,23 @@
         <input id="inputField" type="text" wire:model.lazy="sub" placeholder="サブカテゴリーを入力"/> -->
             <input type="text" wire:model="main" placeholder="メインカテゴリーを入力"><br>
             <input type="text" wire:model="sub" placeholder="サブカテゴリーを入力"><br>
-            <button wire:click="saveToDatabase">保存</button>
+            <button wire:click="save">保存</button>
         </div>
         @endif
 
-        <!-- @if($main && $sub)
+        @if($wCheck)
+        @if($main && $sub)
         <p>"{{$main ?? ''}}"をメインカテゴリーとして登録しますか？<br>
             "{{$sub ?? ''}}"をサブカテゴリーとして登録しますか？</p>
-        <form action="#">
-            <input type="submit" value="登録する">
-        </form>
-        @endif -->
+        <button wire:click="saveToDatabase">保存</button>
+        @endif
+        @endif
 
     </div>
-
+    <script>
+        Livewire.on('dataSaved', function () {
+            // データ保存後にページを再読み込み
+            location.reload();
+        });
+    </script>
 </div>

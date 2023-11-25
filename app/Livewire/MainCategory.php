@@ -6,13 +6,14 @@ use Livewire\Component;
 use App\Models\Main;
 use App\Models\Sub;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Livewire;
 
 class MainCategory extends Component
 {
     // protected $listeners = [
     //     'show'
     // ];
-    public $isCheck, $main, $sub;
+    public $isCheck, $main, $sub, $wCheck;
 
     public function render()
     {
@@ -24,26 +25,30 @@ class MainCategory extends Component
         $this->isCheck = true;
     }
 
-    public function saveToDatabase()
+    public function save()
     {
-        // 現在ログインしているユーザーのIDを取得
+        $this->wCheck = true;
+    }
+        public function saveToDatabase()
+    {    // 現在ログインしているユーザーのIDを取得
         $userId = Auth::id();
 
         $mainCreate = Main::create([
-        'main' => $this->main,
-        'user_id' => $userId,
+            'main' => $this->main,
+            'user_id' => $userId,
         ]);
 
         Sub::create([
-        'sub' => $this->sub,
-        'main_id' => $mainCreate->id,
-    ]);
-    
+            'sub' => $this->sub,
+            'main_id' => $mainCreate->id,
+        ]);
+
+        // データベースに挿入後、Livewireのステートを更新
+        Livewire::emit('dataSaved');
+
         // 変数をクリアする（任意）
         $this->main = '';
         $this->sub = '';
 
-        // 保存後の処理を追加する（任意）
-        $refresh;
     }
 }
