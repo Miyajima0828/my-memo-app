@@ -57,7 +57,6 @@ class AppController extends Controller
 
         // dd($userMain);
         return view('dashboard', compact('userMain', 'mainIdArray', 'userSub'));
-        return view('livewire.subcategory', compact('userMain', 'mainIdArray', 'userSub'));
     }
 
     // とりあえず、生のモデルから変数としてひっぱる

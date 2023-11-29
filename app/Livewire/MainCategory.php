@@ -13,7 +13,7 @@ class MainCategory extends Component
     // protected $listeners = [
     //     'show'
     // ];
-    public $isCheck, $main, $sub, $wCheck;
+    public $isCheck, $main, $sub, $wCheck, $emit;
 
     public function render()
     {
@@ -43,8 +43,8 @@ class MainCategory extends Component
             'main_id' => $mainCreate->id,
         ]);
 
-        // データベースに挿入後、Livewireのステートを更新
-        Livewire::emit('dataSaved');
+        // TODO データベースに挿入後、Livewireのステートを更新
+        $this->emitTo('subcategory', 'refresh');
 
         // 変数をクリアする（任意）
         $this->main = '';

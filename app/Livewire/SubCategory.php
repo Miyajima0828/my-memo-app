@@ -6,7 +6,11 @@ use Livewire\Component;
 
 class SubCategory extends Component
 {
-    public $userMain, $mainIdArray, $userSub;
+    public $userMain, $mainIdArray = [], $userSub;
+
+    public $listeners = [
+        'refresh' => '$refresh'
+    ];
 
     // public function __construct($id = null)
     // {
@@ -30,12 +34,12 @@ class SubCategory extends Component
     //     $this->userSub = $this->livewire('userSub');
     // }
 
-    public function mount()
+    public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
         // Livewireデータを直接アクセス
-        $this->userMain = $this->userMain;
-        $this->mainIdArray = $this->mainIdArray;
-        $this->userSub = $this->userSub;
+        $this->userMain = $userMain;
+        $this->mainIdArray = $mainIdArray;
+        $this->userSub = $userSub;
     }
 
     public function render()
