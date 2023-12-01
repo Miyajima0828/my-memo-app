@@ -3,14 +3,17 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Main;
+use App\Models\Sub;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Livewire;
 
 class SubCategory extends Component
 {
     public $userMain, $mainIdArray = [], $userSub;
-
-    public $listeners = [
-        'refresh' => '$refresh'
-    ];
+    public $isCheck, $mainCate, $subCate, $wCheck;
+    public $mainId;
+    public $currentMainId;
 
     // public function __construct($id = null)
     // {
@@ -42,10 +45,37 @@ class SubCategory extends Component
         $this->userSub = $userSub;
     }
 
+    public function input($mainId)
+    {
+        $this->isCheck = true;
+        $this->currentMainId = $mainId;
+    }
+
+    public function save($mainId)
+    {
+        $this->wCheck = true;
+        $this->currentMainId = $mainId;
+    }
+
+    public function saveToDatabase()
+    {
+        // 現在ログインしているユーザーのIDを取得
+        if ($this->isCheck) {
+            $userId = Auth::id();
+
+            Sub::create([
+                'sub' => $this->subCate,
+                'main_id' => $this->currentMainId,
+            ]);
+        }
+
+        $this->isCheck = false;
+
+        return redirect()->route('dashboard');
+    }
+
     public function render()
     {
         return view('livewire.subcategory');
     }
-
-
 }

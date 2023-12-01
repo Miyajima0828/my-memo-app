@@ -14,6 +14,7 @@ class Main extends Model
     // DBにsaveするときに大量代入するため
     protected $fillable = ['main', 'user_id'];
 
+
     // userモデルとリレーション
     public function user()
     {

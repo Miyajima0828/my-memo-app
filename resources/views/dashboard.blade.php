@@ -42,19 +42,24 @@
                     <!-- もしユーザーがmain_idをcount=1～4持っていたら -->
                     @elseif ($userMainCount >= 1 && 4 >= $userMainCount)
                     <!-- <p>メインカテゴリー<span><a href="#" onclick="showInput()">＋</a></span></p> -->
+
                     @livewire('main-category')
                     @livewire('sub-category', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
-                        <!-- もしユーザーがmain_idをcount=0持っていたら左寄せで"メインカテゴリー"と表示、右端に＋マークが表示される -->
-                        @elseif ($userMainCount == 0)
-                        @livewire('main-category')
-                        @endif
-            
 
+                    {{-- @livewire('category-list', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain]) --}}
+                    <!-- もしユーザーがmain_idをcount=0持っていたら左寄せで"メインカテゴリー"と表示、右端に＋マークが表示される -->
+                    @elseif ($userMainCount == 0)
+
+                    @livewire('main-category')
+
+                    @endif
+
+
+            </div>
+            <x-tab>
+            </x-tab>
         </div>
-        <x-tab>
-        </x-tab>
-    </div>
-    <!-- <div class="py-12">
+        <!-- <div class="py-12">
         <div class="max-w-7xl sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-welcome /> -->
