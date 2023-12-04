@@ -1,6 +1,4 @@
 <div>
-    <!-- <p>メインカテゴリー<span><a href="#" onclick="showInput()">＋</a></span></p> -->
-
     <div>
         <p>メインカテゴリー<span wire:click="input()">＋</span></p>
         @if ($isCheck)

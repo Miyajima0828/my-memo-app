@@ -11,31 +11,10 @@ use Livewire\Livewire;
 class SubCategory extends Component
 {
     public $userMain, $mainIdArray = [], $userSub;
-    public $isCheck, $mainCate, $subCate, $wCheck;
-    public $mainId;
-    public $currentMainId;
-
-    // public function __construct($id = null)
-    // {
-    //     parent::__construct($id);
-
-    //     // $this->livewire プロパティを使用して Livewire データにアクセスできます
-    //     $userMain = $this->livewire('userMain');
-    //     $mainIdArray = $this->livewire('mainIdArray');
-    //     $userSub = $this->livewire('userSub');
-
-    //     $this->userMain = $userMain;
-    //     $this->mainIdArray = $mainIdArray;
-    //     $this->userSub = $userSub;
-    // }
-
-    // public function mount()
-    // {
-    //     // $this->livewire プロパティを使用して Livewire データにアクセスできます
-    //     $this->userMain = $this->livewire('userMain');
-    //     $this->mainIdArray = $this->livewire('mainIdArray');
-    //     $this->userSub = $this->livewire('userSub');
-    // }
+    public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
+    public $nowSubItemArray, $currentSub, $deleteSubCheck;
+    public $nowMainCategory, $deleteMainCheck, $nowSubId;
+    public $currentMain;
 
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
@@ -70,6 +49,41 @@ class SubCategory extends Component
         }
 
         $this->isCheck = false;
+
+        return redirect()->route('dashboard');
+    }
+
+    public function deleteSubCategory($nowSubId)
+    {
+        $this->deleteSubCheck = true;
+        $this->currentSub = $nowSubId;
+    }
+
+    public function deleteSub($nowSubId)
+    {
+        Sub::where('id', $nowSubId)
+        ->delete();
+
+        $this->deleteSubCheck = false;
+
+        return redirect()->route('dashboard');
+    }
+
+    public function deleteMainCategory($mainId)
+    {
+        $this->deleteMainCheck = true;
+        $this->currentMain = $mainId;
+    }
+
+    public function deleteMain($mainId)
+    {
+        Main::where('id', $mainId)
+        ->delete();
+
+        Sub::where('main_id', $mainId)
+        ->delete();
+
+        $this->deleteMainCheck = false;
 
         return redirect()->route('dashboard');
     }
