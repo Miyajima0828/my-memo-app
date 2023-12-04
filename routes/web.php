@@ -24,11 +24,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+    Route::get('/dashboard', [AppController::class, 'getAll'])->name('dashboard');
 });
 
 
-Route::get('/index', [PostController::class, 'index'])
-    ->name('index');
+// Route::get('/index', [PostController::class, 'index'])
+//     ->name('index');
+// /categoriesとURLに入力したら、categories.bladeが開くようにする
+// Route::get('/dashboard/categories', [AppController::class, 'getAll'])->name('categories');

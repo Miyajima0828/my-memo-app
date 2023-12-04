@@ -12,18 +12,9 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $keyword = $request->input('keyword');
+        
 
-        $query = Post::query();
-
-        if(!empty($keyword)) {
-            $query->where('sub', 'LIKE', "%{$keyword}%")
-                ->orWhere('text', 'LIKE', "%{$keyword}%");
-        }
-
-        $posts = $query->get();
-
-        return view('index', compact('posts', 'keyword'));
+        return view('index');
     }
 }
 

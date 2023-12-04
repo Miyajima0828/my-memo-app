@@ -7,13 +7,13 @@ use Illuminate\View\Component;
 class Search extends Component
 {
 
-    public $text;
+    // public $text;
 
-    public function __construct($text)
-    {
+    // public function __construct($text)
+    // {
 
-        $this->text = $text;
-    }
+    //     $this->text = $text;
+    // }
 
     // この部分は編集不要
     public function render()
