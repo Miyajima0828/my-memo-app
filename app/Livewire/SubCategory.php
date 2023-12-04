@@ -15,6 +15,8 @@ class SubCategory extends Component
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
     public $nowMainCategory, $deleteMainCheck, $nowSubId;
     public $currentMain;
+    public $updateMainCheck, $newMainCategory; 
+    public $updateSubCheck, $newSubCategory; 
 
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
@@ -69,10 +71,9 @@ class SubCategory extends Component
         return redirect()->route('dashboard');
     }
 
-    public function deleteMainCategory($mainId)
+    public function deleteMainCategory()
     {
         $this->deleteMainCheck = true;
-        $this->currentMain = $mainId;
     }
 
     public function deleteMain($mainId)
@@ -84,6 +85,37 @@ class SubCategory extends Component
         ->delete();
 
         $this->deleteMainCheck = false;
+
+        return redirect()->route('dashboard');
+    }
+
+    public function updateMainCategory()
+    {
+        $this->updateMainCheck = true;
+    }
+
+    public function updateMain($mainId)
+    {
+        $mainRecord = Main::find($mainId);
+        $mainRecord->update(['main' => $this->newMainCategory]);
+
+        $this->updateMainCheck = false;
+
+        return redirect()->route('dashboard');
+    }
+
+    public function updateSubCategory($nowSubId)
+    {
+        $this->updateSubCheck = true;
+        $this->currentSub = $nowSubId;
+    }
+
+    public function updateSub($nowSubId)
+    {
+        $subRecord = Sub::find($nowSubId);
+        $subRecord->update(['sub' => $this->newSubCategory]);
+
+        $this->updateSubCheck = false;
 
         return redirect()->route('dashboard');
     }

@@ -8,9 +8,19 @@
     @if ($userSubCount < 5)
         <!-- 各mainカテゴリーの右端に＋マーク表示し、mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの下にp,smallで表示 -->
 
-        <h2>{{ $nowMainCategory }}<span>&nbsp;&nbsp;<a href="#">変</a>&nbsp;</span><span>&nbsp;<a href="#"
-                    wire:click="deleteMainCategory({{ $mainId }})">削</a>&nbsp;&nbsp;</span><span
+        <h2>{{ $nowMainCategory }}<span>&nbsp;&nbsp;<a href="#"
+                    wire:click="updateMainCategory()">変</a>&nbsp;</span><span>&nbsp;<a href="#"
+                    wire:click="deleteMainCategory()">削</a>&nbsp;&nbsp;</span><span
                 wire:click="input({{ $mainId }})">＋</span></h2>
+
+        {{-- メインカテゴリーの変更 --}}
+        @if ($updateMainCheck)
+            <div>
+                <p>"{{ $nowMainCategory }}"を<input type="text" wire:model.defer="newMainCategory"
+                        placeholder="メインカテゴリー名">に変更しますか？</p>
+                <button wire:click="updateMain({{ $mainId }})">変更</button>
+            </div>
+        @endif
 
         {{-- メインカテゴリーの削除 --}}
         @if ($deleteMainCheck)
@@ -21,6 +31,7 @@
             </div>
         @endif
 
+        {{-- サブカテゴリーの追加 --}}
         @if ($isCheck && $mainId === $currentMainId)
             <div>
                 <input type="text" wire:model.defer="subCate" placeholder="サブカテゴリーを入力"><br>
@@ -34,6 +45,7 @@
                 <button wire:click="saveToDatabase">保存</button>
             @endif
         @endif
+        {{-- サブカテゴリーの追加ここまで --}}
 
         @foreach ($userSub[$mainId] as $subItemArray)
             <a href="#">
@@ -42,9 +54,19 @@
                     $nowSubId = $subItemArray['id'];
                 @endphp
 
-                <p>{{ $subItemArray['sub'] }}<span>&nbsp;&nbsp;<a href="#">変</a></span><span>&nbsp;&nbsp;<a
-                            href="#" wire:click="deleteSubCategory({{ $nowSubId }})">削</a></span></p>
+                <p>{{ $subItemArray['sub'] }}<span>&nbsp;&nbsp;<a href="#"
+                            wire:click="updateSubCategory({{ $nowSubId }})">変</a></span><span>&nbsp;&nbsp;<a href="#"
+                            wire:click="deleteSubCategory({{ $nowSubId }})">削</a></span></p>
             </a>
+
+            {{-- サブカテゴリーの変更 --}}
+            @if ($updateSubCheck && $nowSubId === $currentSub)
+                <div>
+                    <p>"{{ $subItemArray['sub'] }}"を<input type="text" wire:model.defer="newSubCategory"
+                            placeholder="サブカテゴリー名">に変更しますか？</p>
+                    <button wire:click="updateSub({{ $nowSubId }})">変更</button>
+                </div>
+            @endif
 
             {{-- サブカテゴリーの削除 --}}
             @if ($deleteSubCheck && $nowSubId === $currentSub)
@@ -60,8 +82,18 @@
         <!-- 各mainカテゴリーに該当するsubカテゴリーが5個なら、 -->
     @else
         <!-- 各mainカテゴリーを表示し、mainカテゴリーに該当するsubカテゴリーをmainカテゴリのpの下にp,smallで表示 -->
-        <h2>{{ $nowMainCategory }}<span>&nbsp;&nbsp;<a href="#">変</a>&nbsp;</span><span>&nbsp;<a href="#"
-                    wire:click="deleteMainCategory({{ $mainId }})">削</a>&nbsp;&nbsp;</span></h2>
+        <h2>{{ $nowMainCategory }}<span>&nbsp;&nbsp;<a href="#"
+                    wire:click="updateMainCategory()">変</a>&nbsp;</span><span>&nbsp;<a href="#"
+                    wire:click="deleteMainCategory()">削</a>&nbsp;&nbsp;</span></h2>
+
+        {{-- メインカテゴリーの変更 --}}
+        @if ($updateMainCheck)
+            <div>
+                <p>"{{ $nowMainCategory }}"を<input type="text" wire:model.defer="newMainCategory"
+                        placeholder="メインカテゴリー名">に変更しますか？</p>
+                <button wire:click="updateMain({{ $mainId }})">変更</button>
+            </div>
+        @endif
 
         {{-- メインカテゴリーの削除 --}}
         @if ($deleteMainCheck)
@@ -71,6 +103,7 @@
                 <button wire:click="deleteMain({{ $mainId }})">削除</button>
             </div>
         @endif
+        {{-- メインカテゴリーの削除ここまで --}}
 
         @foreach ($userSub[$mainId] as $subItemArray)
             <a href="#">
@@ -79,9 +112,19 @@
                     $nowSubId = $subItemArray['id'];
                 @endphp
 
-                <p>{{ $subItemArray['sub'] }}<span>&nbsp;&nbsp;<a href="#">変</a></span><span>&nbsp;&nbsp;<a
-                            href="#" wire:click="deleteSubCategory({{ $nowSubId }})">削</a></span></p>
+                <p>{{ $subItemArray['sub'] }}<span>&nbsp;&nbsp;<a href="#"
+                            wire:click="updateSubCategory({{ $nowSubId }})">変</a></span><span>&nbsp;&nbsp;<a href="#"
+                            wire:click="deleteSubCategory({{ $nowSubId }})">削</a></span></p>
             </a>
+
+            {{-- サブカテゴリーの変更 --}}
+            @if ($updateSubCheck && $nowSubId === $currentSub)
+                <div>
+                    <p>"{{ $subItemArray['sub'] }}"を<input type="text" wire:model.defer="newSubCategory"
+                            placeholder="サブカテゴリー名">に変更しますか？</p>
+                    <button wire:click="updateSub({{ $nowSubId }})">変更</button>
+                </div>
+            @endif
 
             {{-- サブカテゴリーの削除 --}}
             @if ($deleteSubCheck && $nowSubId === $currentSub)
