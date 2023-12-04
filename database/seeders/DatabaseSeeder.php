@@ -7,6 +7,11 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private const SEEDERS = [
+        UserSeeder::class,
+        MainSeeder::class,
+        SubSeeder::class,
+    ];
     /**
      * Seed the application's database.
      */
@@ -18,5 +23,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+         // ここから追加
+         foreach(self::SEEDERS as $seeder) {
+            $this->call($seeder);
+        }
+        // ここまで
     }
 }
