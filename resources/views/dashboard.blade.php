@@ -28,8 +28,7 @@
                 @endforeach
             </div>
 
-            {{-- @livewire('category-list', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain]) --}}
-            <!-- もしユーザーがmain_idをcount=0持っていたら左寄せで"メインカテゴリー"と表示、右端に＋マークが表示される -->
+            <!-- もしユーザーがmain_idをcount=0持っていたら -->
             @elseif ($userMainCount == 0)
             @livewire('main-create')
             @endif

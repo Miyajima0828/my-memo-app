@@ -10,25 +10,16 @@ use Livewire\Livewire;
 
 class SubCreate extends Component
 {
-    // public $isCheck, $wCheck, $currentMainId;
     public $userMain, $mainIdArray = [], $userSub;
     public $mainCate, $subCate, $mainId, $isModalSubCreate;
-
-    public $isModalSubDelete;
-
+    public $isModalSubDelete, $currentSub;
     public $isModalMainDelete;
+    public $isModalMainUpdate, $newMainCategory;
+    public $isModalSubUpdate, $newSubCategory;
 
-    // public $nowSubItemArray, $deleteSubCheck;
-    public $nowMainCategory, $deleteMainCheck, $nowSubId;
-
-    public $currentMain;
-    public $updateMainCheck, $newMainCategory;
-    public $updateSubCheck, $newSubCategory;
-    public $currentSub;
-
+    // Livewireデータを直接アクセス
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
-        // Livewireデータを直接アクセス
         $this->userMain = $userMain;
         $this->mainIdArray = $mainIdArray;
         $this->userSub = $userSub;
@@ -59,8 +50,6 @@ class SubCreate extends Component
     }
     public function subDelete($nowSubId)
     {
-        $this->currentSub = $nowSubId;
-
         Sub::where('id', $nowSubId)
             ->delete();
 
@@ -73,7 +62,7 @@ class SubCreate extends Component
         $this->isModalMainDelete = true;
     }
 
-    public function deleteMain($mainId)
+    public function mainDelete($mainId)
     {
         Main::where('id', $mainId)
             ->delete();
@@ -81,38 +70,34 @@ class SubCreate extends Component
         Sub::where('main_id', $mainId)
             ->delete();
 
-        // $this->deleteMainCheck = false;
-
         return redirect()->route('dashboard');
     }
 
-    public function updateMainCategory()
+    // メインカテゴリー変更機能
+    public function openModalMainUpdate()
     {
-        $this->updateMainCheck = true;
+        $this->isModalMainUpdate = true;
     }
 
-    public function updateMain($mainId)
+    public function mainUpdate($mainId)
     {
         $mainRecord = Main::find($mainId);
         $mainRecord->update(['main' => $this->newMainCategory]);
 
-        $this->updateMainCheck = false;
-
         return redirect()->route('dashboard');
     }
 
-    public function updateSubCategory($nowSubId)
+    // サブカテゴリーの変更機能
+    public function openModalSubUpdate($nowSubId)
     {
-        $this->updateSubCheck = true;
+        $this->isModalSubUpdate = true;
         $this->currentSub = $nowSubId;
     }
 
-    public function updateSub($nowSubId)
+    public function subUpdate($nowSubId)
     {
         $subRecord = Sub::find($nowSubId);
         $subRecord->update(['sub' => $this->newSubCategory]);
-
-        $this->updateSubCheck = false;
 
         return redirect()->route('dashboard');
     }
