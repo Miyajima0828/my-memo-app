@@ -24,8 +24,8 @@ class MainCategory extends Component
     }
 
     public function saveToDatabase()
-    {    // 現在ログインしているユーザーのIDを取得
-
+    {
+        // 現在ログインしているユーザーのIDを取得
         if ($this->isCheck) {
             $userId = Auth::id();
 
