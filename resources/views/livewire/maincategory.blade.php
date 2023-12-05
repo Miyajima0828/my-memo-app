@@ -1,6 +1,6 @@
 <div>
     <div>
-        <p>メインカテゴリー<span wire:click="input()">＋</span></p>
+        <p class="text-lg font-semibold mb-1">メインカテゴリー&nbsp;&nbsp;<span wire:click="input()"><i class="fa-solid fa-plus"></i></span></p>
         @if ($isCheck)
             <div>
                 <input type="text" wire:model.defer="mainCate" placeholder="メインカテゴリーを入力"><br>

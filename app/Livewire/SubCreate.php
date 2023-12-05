@@ -8,15 +8,23 @@ use App\Models\Sub;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 
-class SubCategory extends Component
+class SubCreate extends Component
 {
+    // public $isCheck, $wCheck, $currentMainId;
     public $userMain, $mainIdArray = [], $userSub;
-    public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
-    public $nowSubItemArray, $currentSub, $deleteSubCheck;
+    public $mainCate, $subCate, $mainId, $isModalSubCreate;
+
+    public $isModalSubDelete;
+
+    public $isModalMainDelete;
+
+    // public $nowSubItemArray, $deleteSubCheck;
     public $nowMainCategory, $deleteMainCheck, $nowSubId;
+
     public $currentMain;
     public $updateMainCheck, $newMainCategory;
     public $updateSubCheck, $newSubCategory;
+    public $currentSub;
 
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
@@ -26,54 +34,43 @@ class SubCategory extends Component
         $this->userSub = $userSub;
     }
 
-    public function input($mainId)
+    // サブカテゴリー追加機能
+    public function openModalSubCreate()
     {
-        $this->isCheck = true;
-        $this->currentMainId = $mainId;
+        $this->isModalSubCreate = true;
     }
-
     public function save($mainId)
     {
-        $this->wCheck = true;
-        $this->currentMainId = $mainId;
-    }
+        $userId = Auth::id();
 
-    public function saveToDatabase()
-    {
-        // 現在ログインしているユーザーのIDを取得
-        if ($this->isCheck) {
-            $userId = Auth::id();
-
-            Sub::create([
-                'sub' => $this->subCate,
-                'main_id' => $this->currentMainId,
-            ]);
-        }
-
-        $this->isCheck = false;
+        Sub::create([
+            'sub' => $this->subCate,
+            'main_id' => $mainId,
+        ]);
 
         return redirect()->route('dashboard');
     }
 
-    public function deleteSubCategory($nowSubId)
+    // サブカテゴリー削除機能
+    public function openModalSubDelete($nowSubId)
     {
-        $this->deleteSubCheck = true;
+        $this->isModalSubDelete = true;
         $this->currentSub = $nowSubId;
     }
-
-    public function deleteSub($nowSubId)
+    public function subDelete($nowSubId)
     {
+        $this->currentSub = $nowSubId;
+
         Sub::where('id', $nowSubId)
             ->delete();
 
-        $this->deleteSubCheck = false;
-
         return redirect()->route('dashboard');
     }
 
-    public function deleteMainCategory()
+    // メインカテゴリー削除機能
+    public function openModalMainDelete()
     {
-        $this->deleteMainCheck = true;
+        $this->isModalMainDelete = true;
     }
 
     public function deleteMain($mainId)
@@ -84,7 +81,7 @@ class SubCategory extends Component
         Sub::where('main_id', $mainId)
             ->delete();
 
-        $this->deleteMainCheck = false;
+        // $this->deleteMainCheck = false;
 
         return redirect()->route('dashboard');
     }
@@ -93,7 +90,7 @@ class SubCategory extends Component
     {
         $this->updateMainCheck = true;
     }
-    
+
     public function updateMain($mainId)
     {
         $mainRecord = Main::find($mainId);
@@ -122,6 +119,6 @@ class SubCategory extends Component
 
     public function render()
     {
-        return view('livewire.subcategory');
+        return view('livewire.sub-create');
     }
 }
