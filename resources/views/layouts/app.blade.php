@@ -41,6 +41,18 @@
     </div>
     @stack('modals')
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.13.0/Sortable.min.js"></script>
+    <script>
+        var taskList = document.getElementById('tabs');
+        
+        Sortable.create(taskList, {
+        animation: 150,
+        onEnd: function (/**Event*/ evt) {
+            var itemEl = evt.item;
+            console.log(itemEl.dataset.id);
+        },
+        });
+    </script>
 </body>
 
 </html>

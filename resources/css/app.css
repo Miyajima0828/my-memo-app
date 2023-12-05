@@ -53,11 +53,11 @@ input[name="tab_item"] {
 
 
 /*選択されているタブのコンテンツのみを表示*/
-#all:checked~#all_content,
-#programming:checked~#programming_content,
-#design:checked~#design_content ,
-#test:checked~#test_content ,
-#document:checked~#document_content {
+#tab1:checked~#tab1_content,
+#tab2:checked~#tab2_content,
+#tab3:checked~#tab3_content ,
+#tab4:checked~#tab4_content ,
+#tab5:checked~#tab5_content {
     display: block;
 }
 
