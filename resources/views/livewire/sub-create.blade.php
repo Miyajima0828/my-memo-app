@@ -80,7 +80,7 @@
             @php
                 $nowSubId = $subItemArray['id'];
             @endphp
-            <p class="mt-0 pt-0">{{ $subItemArray['sub'] }}&nbsp;&nbsp;<span><a href="#"
+            <p class="mt-0 pt-0 indent-4">{{ $subItemArray['sub'] }}&nbsp;&nbsp;<span><a href="#"
                         wire:click="openModalSubUpdate({{ $nowSubId }})"><i
                             class="fa-solid fa-retweet text-xs text-gray-300"></i></a></span>&nbsp;&nbsp;<span><a
                         href="#" wire:click="openModalSubDelete({{ $nowSubId }})"><i
@@ -188,7 +188,7 @@
             @php
                 $nowSubId = $subItemArray['id'];
             @endphp
-            <p class="mt-0 pt-0">{{ $subItemArray['sub'] }}&nbsp;&nbsp;<span><a href="#"
+            <p class="mt-0 pt-0 indent-4">{{ $subItemArray['sub'] }}&nbsp;&nbsp;<span><a href="#"
                         wire:click="openModalSubUpdate({{ $nowSubId }})"><i
                             class="fa-solid fa-retweet text-xs text-gray-300"></i></a></span>&nbsp;&nbsp;<span><a
                         href="#" wire:click="openModalSubDelete({{ $nowSubId }})"><i

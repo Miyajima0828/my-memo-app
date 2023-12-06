@@ -12,7 +12,7 @@
         ecosystem to be a breath of fresh air. We hope you love it.
     </p>
 </div>
-{{-- 
+
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
     <div>
         <div class="flex items-center">
@@ -93,4 +93,4 @@
             Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
         </p>
     </div>
-</div> --}}
+</div>
