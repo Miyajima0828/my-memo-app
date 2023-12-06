@@ -1,15 +1,15 @@
 <div class="tabs">
     <form action="#" method="POST">
 
-        <input id="all" type="radio" name="tab_item" checked>
+        <input id="tab1" type="radio" name="tab_item" checked>
         <label class="tab_item" for="all">総合</label>
-        <input id="programming" type="radio" name="tab_item">
+        <input id="tab2" type="radio" name="tab_item">
         <label class="tab_item" for="programming">プログラミング</label>
-        <input id="design" type="radio" name="tab_item">
+        <input id="tab3" type="radio" name="tab_item">
         <label class="tab_item" for="design">デザイン</label>
-        <input id="test" type="radio" name="tab_item">
+        <input id="tab4" type="radio" name="tab_item">
         <label class="tab_item" for="test">テスト</label>
-        <input id="document" type="radio" name="tab_item">
+        <input id="tab5" type="radio" name="tab_item">
         <label class="tab_item" for="document">書類</label>
         <div class="tab_content" id="all_content">
             <div class="tab_content_description">

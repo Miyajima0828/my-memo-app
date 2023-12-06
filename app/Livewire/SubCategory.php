@@ -7,6 +7,8 @@ use App\Models\Main;
 use App\Models\Sub;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
+use App\Livewire\Tab;
+use Carbon\Carbon;
 
 class SubCategory extends Component
 {
@@ -15,8 +17,8 @@ class SubCategory extends Component
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
     public $nowMainCategory, $deleteMainCheck, $nowSubId;
     public $currentMain;
-    public $updateMainCheck, $newMainCategory; 
-    public $updateSubCheck, $newSubCategory; 
+    public $updateMainCheck, $newMainCategory;
+    public $updateSubCheck, $newSubCategory;
 
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
@@ -64,7 +66,7 @@ class SubCategory extends Component
     public function deleteSub($nowSubId)
     {
         Sub::where('id', $nowSubId)
-        ->delete();
+            ->delete();
 
         $this->deleteSubCheck = false;
 
@@ -79,10 +81,10 @@ class SubCategory extends Component
     public function deleteMain($mainId)
     {
         Main::where('id', $mainId)
-        ->delete();
+            ->delete();
 
         Sub::where('main_id', $mainId)
-        ->delete();
+            ->delete();
 
         $this->deleteMainCheck = false;
 
@@ -119,7 +121,22 @@ class SubCategory extends Component
 
         return redirect()->route('dashboard');
     }
+    public function onClickUpdate($nowSubId)
+    {
+        $query = Sub::query();
+        $userId = Auth::id();
+        $query
+            ->join('main', 'sub.main_id', '=', 'main.id')
+            ->where('user_id', '=', "$userId")
+            ->where('sub.id','=', $nowSubId)
+            ->update(['updated_at' => Carbon::now()]);
 
+            // return redirect()->route('dashboard');
+        // $this->dispatch('TabSelect');
+        return redirect()->route('dashboard');
+
+
+    }
     public function render()
     {
         return view('livewire.subcategory');

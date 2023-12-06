@@ -54,7 +54,7 @@
                     $nowSubId = $subItemArray['id'];
                 @endphp
 
-                <p>{{ $subItemArray['sub'] }}<span>&nbsp;&nbsp;<a href="#"
+                <p><span wire:click="onClickUpdate({{ $nowSubId }})">{{ $subItemArray['sub'] }}</span><span>&nbsp;&nbsp;<a href="#"
                             wire:click="updateSubCategory({{ $nowSubId }})">変</a></span><span>&nbsp;&nbsp;<a href="#"
                             wire:click="deleteSubCategory({{ $nowSubId }})">削</a></span></p>
             </a>

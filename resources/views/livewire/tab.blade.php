@@ -1,32 +1,42 @@
 <div class="tabs">
     <form action="#" method="POST">
-        @if($userSub[1][0])
-        @foreach($userSub as $array)
-        @foreach($array as $key=> $data)
-            
-                
-                @if($key==0)
-                <input id="tab{{$key+1}}" type="radio" name="tab_item" checked>
-                @else
-                <input id="tab{{$key+1}}" type="radio" name="tab_item">
-                @endif
-                
-                <label class="tab_item" for="tab{{$key+1}}">{{$data['sub']}}</label>
-            @endforeach
-        @endforeach
-        @foreach($userSub as $array)
-        @foreach($array as $key=> $data)
-            
-                <div class="tab_content" id="tab{{$key+1}}_content">
-                    <div class="tab_content_description">
-                        <textarea style="height:80vh;" class="w-full border-none" name="text">{{$data['text']}}</textarea>
-                    </div>
-                </div>
-                @endforeach
-        @endforeach
+        @php
+            $num_id=0;
+        @endphp
+        @foreach($tabs as $data)
+        
+        @if($num_id==0)
+        <input id="tab{{$num_id+1}}" type="radio" name="tab_item" checked>
+        @else
+        <input id="tab{{$num_id+1}}" type="radio" name="tab_item">
         @endif
-            
-          
+
+        <label class="tab_item pt-2" for="tab{{$num_id+1}}">{{$data['main']}}&nbsp;&nbsp;{{$data['sub']}}</label>
+
+        @php
+            $num_id++;
+        @endphp
+        @endforeach
+        @php
+            $num_id=0;
+        @endphp
+        @foreach($tabs as $data)
+        @php
+            $nowSubId=$data['id'];
+        @endphp
+
+        <div class="tab_content" id="tab{{$num_id+1}}_content">
+            <div class="tab_content_description">
+                <textarea style="height:80vh;" class="w-full border-none" name="text">{{$data['text']}}</textarea>
+            </div>
+        </div>
+        @php
+            $num_id++;
+        @endphp
+        @endforeach
+
+
+
     </form>
 
 </div>

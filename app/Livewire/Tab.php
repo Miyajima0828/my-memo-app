@@ -3,19 +3,26 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Http\Request;
 use App\Models\Main;
 use App\Models\Sub;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 
+
+
+
 class Tab extends Component
 {
+    protected $listeners = [
+        'TabSelect' => 'tabSelect'
+    ];
     public $userMain, $mainIdArray = [], $userSub;
     public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
     public $nowMainCategory, $deleteMainCheck, $nowSubId;
     public $currentMain;
-    
+    public $tabs,$text;
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
         // Livewireデータを直接アクセス
@@ -24,17 +31,6 @@ class Tab extends Component
         $this->userSub = $userSub;
     }
 
-    public function input($mainId)
-    {
-        $this->isCheck = true;
-        $this->currentMainId = $mainId;
-    }
-
-    public function save($mainId)
-    {
-        $this->wCheck = true;
-        $this->currentMainId = $mainId;
-    }
 
     public function saveToDatabase()
     {
@@ -53,43 +49,57 @@ class Tab extends Component
         return redirect()->route('dashboard');
     }
 
-    public function deleteSubCategory($nowSubId)
+    public function tabSelect()
     {
-        $this->deleteSubCheck = true;
-        $this->currentSub = $nowSubId;
+        $query = Sub::query();
+        $userId = Auth::id();
+        $cnt = 0;
+        foreach ($this->userSub as $array) {
+            foreach ($array as $data) {
+                $cnt++;
+            }
+        }
+        if (!empty($this->userSub)) {
+            $query
+                ->join('main', 'sub.main_id', '=', 'main.id')
+                ->where('user_id', '=', "$userId")
+                ->when($cnt >= 5, function ($tmp_query) {
+                    $tmp_query
+                        ->orderBy('sub.updated_at', 'desc')
+                        ->take(5);
+                }, function ($tmp_query) {
+                $tmp_query
+                    ->orderBy('sub.updated_at', 'desc');
+            });
+
+        }
+
+        $tabs = $query->get()->toArray();
+        $this->tabs = $tabs;
+        // dd($this->userSub);
+        // dd($tabs);
+
+    }
+    public function saveText()
+    {
+        
+            Sub::where('id', '=', '$nowSubId')
+                ->uptate([
+                    'text' => $this->text,
+                ]);
+            dd($this);
+
+
     }
 
-    public function deleteSub($nowSubId)
+    public function render(Request $request)
     {
-        Sub::where('id', $nowSubId)
-        ->delete();
-
-        $this->deleteSubCheck = false;
-
-        return redirect()->route('dashboard');
-    }
-
-    public function deleteMainCategory($mainId)
-    {
-        $this->deleteMainCheck = true;
-        $this->currentMain = $mainId;
-    }
-
-    public function deleteMain($mainId)
-    {
-        Main::where('id', $mainId)
-        ->delete();
-
-        Sub::where('main_id', $mainId)
-        ->delete();
-
-        $this->deleteMainCheck = false;
-
-        return redirect()->route('dashboard');
-    }
-
-    public function render()
-    {
+        if (!empty($this->userSub)) {
+            $this->tabSelect();
+        }
+        // if ($request->ajax()) {
+        //     $this->saveText();
+        // }
         return view('livewire.tab');
     }
 }

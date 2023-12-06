@@ -5,7 +5,7 @@
             @if(!is_null($posts))
             @foreach ($posts as $post)
             <label>
-            {{ $post->sub }} {{ $post-> text}}<br>
+            {{$post->main}}{{ $post->sub }} {{ $post-> text}}<br>
             </label>
             @endforeach
             @endif

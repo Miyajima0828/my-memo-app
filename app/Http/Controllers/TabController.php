@@ -19,6 +19,6 @@ class TabController extends Controller
             $tab->save();
         }
         
-        return view('並び順を変更しました！', 200);
+        
     }
 }

@@ -26,11 +26,15 @@ class Search extends Component
 
         if(!empty($this->keyword)) {
             $query
-            ->where('sub', 'LIKE', "%{$this->keyword}%")
+            ->join('main','sub.main_id','=','main.id')
+            ->where('user_id','=',"$userId")
+            ->where(function($tmp_query){
+                $tmp_query->where('sub', 'LIKE', "%{$this->keyword}%")
                 ->orWhere('text', 'LIKE', "%{$this->keyword}%");
+            });
         }
-
+        
         $this->posts = $query->get();
-
+        
     }
 }
