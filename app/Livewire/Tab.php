@@ -15,14 +15,15 @@ use Livewire\Livewire;
 class Tab extends Component
 {
     protected $listeners = [
-        'TabSelect' => 'tabSelect'
+        'TabSelect' => 'tabSelect',
+        'saveText'
     ];
     public $userMain, $mainIdArray = [], $userSub;
     public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
-    public $nowMainCategory, $deleteMainCheck, $nowSubId;
+    public $nowMainCategory, $deleteMainCheck, $nowSub;
     public $currentMain;
-    public $tabs,$text;
+    public $tabs, $text;
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
         // Livewireデータを直接アクセス
@@ -68,10 +69,9 @@ class Tab extends Component
                         ->orderBy('sub.updated_at', 'desc')
                         ->take(5);
                 }, function ($tmp_query) {
-                $tmp_query
-                    ->orderBy('sub.updated_at', 'desc');
-            });
-
+                    $tmp_query
+                        ->orderBy('sub.updated_at', 'desc');
+                });
         }
 
         $tabs = $query->get()->toArray();
@@ -82,17 +82,18 @@ class Tab extends Component
     }
     public function saveText()
     {
-        
-            Sub::where('id', '=', '$nowSubId')
-                ->uptate([
-                    'text' => $this->text,
-                ]);
-            dd($this);
-
-
+        $userId = Auth::id();
+        // dd($this->nowSub);
+        Sub::join('main', 'sub.main_id', '=', 'main.id')
+            ->where('user_id', '=', $userId)
+            ->where('sub', '=', $this->nowSub)
+            ->update([
+                'text' => $this->text
+            ]);
+        return redirect()->route('dashboard');
     }
 
-    public function render(Request $request)
+    public function render()
     {
         if (!empty($this->userSub)) {
             $this->tabSelect();
@@ -101,5 +102,11 @@ class Tab extends Component
         //     $this->saveText();
         // }
         return view('livewire.tab');
+    }
+    protected function rules(): array
+    {
+        return [
+            'text' => 'required',
+        ];
     }
 }

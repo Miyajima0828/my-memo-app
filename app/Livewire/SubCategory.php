@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Main;
 use App\Models\Sub;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Livewire;
+// use Livewire\Livewire;
 use App\Livewire\Tab;
 use Carbon\Carbon;
 
@@ -20,6 +20,9 @@ class SubCategory extends Component
     public $updateMainCheck, $newMainCategory;
     public $updateSubCheck, $newSubCategory;
 
+    protected $listeners = [
+        'onClickUpdate'
+    ];
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
         // Livewireデータを直接アクセス
@@ -121,17 +124,16 @@ class SubCategory extends Component
 
         return redirect()->route('dashboard');
     }
-    public function onClickUpdate($nowSubId)
+    public function onClickUpdate($nowSub)
     {
         $query = Sub::query();
         $userId = Auth::id();
         $query
             ->join('main', 'sub.main_id', '=', 'main.id')
             ->where('user_id', '=', "$userId")
-            ->where('sub.id','=', $nowSubId)
+            ->where('sub','=', "$nowSub")
             ->update(['updated_at' => Carbon::now()]);
 
-            // return redirect()->route('dashboard');
         // $this->dispatch('TabSelect');
         return redirect()->route('dashboard');
 
