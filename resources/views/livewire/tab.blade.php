@@ -7,7 +7,6 @@
         <input id="tab{{$key+1}}" type="radio" name="tab_item" checked>
         @else
         <input id="tab{{$key+1}}" type="radio" name="tab_item">
-        <input id="tab{{$key+1}}" type="radio" name="tab_item">
         @endif
 
         <label class="tab_item pt-2" for="tab{{$key+1}}" wire:click="$set('checkedKey','{{$key}}')">{{$data['main']}}&nbsp;&nbsp;{{$data['sub']}}</label>

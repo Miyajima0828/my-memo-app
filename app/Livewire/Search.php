@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class Search extends Component
 {
 
-    public $keyword, $posts;
+    public $keyword,$setKeyword, $posts;
 
     // この部分は編集不要
     public function render()
@@ -20,29 +20,47 @@ class Search extends Component
         if($this->keyword > 0) {
             $this->getKeyword();
         }
+        
         return view('livewire.search');
     }
 
     public function getKeyword() {
         $query = Post::query();
         $userId = Auth::id();
-
-        if(!empty($this->keyword)) {
+        
+        if(filled($this->keyword)) {
             $query
-            ->join('main','sub.main_id','=','main.id')
+            ->join('main','main.id','=','sub.main_id')
             ->where('user_id','=',"$userId")
-            ->where('sub.deleted_at','=',null)
+            ->whereNull('sub.deleted_at')
             ->where(function($tmp_query){
                 $tmp_query->where('sub', 'LIKE', "%{$this->keyword}%")
-                ->orWhere('text', 'LIKE', "%{$this->keyword}%");
+                ->orWhere('text', 'LIKE', "%{$this->keyword}%")
+                ->orWhere('main', 'LIKE', "%{$this->keyword}%");
             });
+            $this->posts = $query->get();
         }
         
-        $this->posts = $query->get();
+        // dd($this->keyword);
+
+        
     }
+    public function searchReset(){
+        $this->setKeyword = $this->keyword;
+        $this->reset('keyword');
+        // dd($this);
+    }
+    public function setWord(){
+        if($this->setKeyword){
+            $this->keyword = $this->setKeyword;
+            $this->getKeyword();
+        }
+        // dd($this);
+    }
+    
     public function onClickUpdate($nowSub)
     {
-        $query = Sub::query();
+        $query = Post::query();
         $userId = Auth::id();
         $query
             ->join('main', 'sub.main_id', '=', 'main.id')

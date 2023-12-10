@@ -76,12 +76,6 @@ input[name="tab_item"] {
 .search-button:hover {
     color: #333;
 }
-input[type="search"]::-webkit-search-cancel-button {   
-    height: 16px;   /* キャンセルボタンのサイズ */
-    width: 16px;    /*  キャンセルボタンのサイズ */
- }
-/* 検索フィールド２：標準＋キャンセルボタンポインター付き */
-#search::-webkit-search-cancel-button { 
-    cursor:pointer; /*  キャンセルボタンにポインターを付ける  */
-  }
+
+
 

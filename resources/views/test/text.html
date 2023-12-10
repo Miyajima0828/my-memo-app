@@ -1,47 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-
-<body>
-	<form action="#">
-		<style>
-			textarea#target {
-				height: 3em;
-			}
-		</style>
-		
-		<div class="test"><textarea id="target"></textarea></div>
-	</form>
-</body>
-<style>
-	.test{
-		text-align: center;
-	}
-	textarea {
-		width: 80%;
-		font-size: 30px;
-		border: none;
-		background-color: #FFF29A;
-		outline: none;
-		resize: none;
-		overflow: hidden;
-		transition: all .2s;
-	}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script>
-	$(function () {
-		$('textarea#target').on('input', function () {
-			var lines = $(this).val().match(/\n/g).length;
-			$(this).css('min-height', lines + 1 + 'em');
-		})
-	})
-</script>
-
-</html>
+<ul id="menu1" role="menu" tabindex="0" focusgroup>
+  <li id="mi1" tabindex="0" role="menuitem">Action 1</li>
+  <li id="mi2" tabindex="-1" role="menuitem">Action 2</li>
+  <li id="mi3" tabindex="-1" role="menuitem">Action 3</li>
+  <li id="mi4" tabindex="-1" role="menuitem">Action 4</li>
+</ul>
