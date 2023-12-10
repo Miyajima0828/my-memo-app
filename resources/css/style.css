@@ -35,7 +35,7 @@ input[name="tab_item"] {
 
 /*タブ切り替えの中身のスタイル*/
 .tab_content {
-  display: none;
+  display: block;
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
@@ -43,11 +43,11 @@ input[name="tab_item"] {
 
 
 /*選択されているタブのコンテンツのみを表示*/
-#all:checked~#all_content,
+/* #all:checked~#all_content,
 #programming:checked~#programming_content,
 #design:checked~#design_content {
   display: block;
-}
+} */
 
 /*選択されているタブのスタイルを変える*/
 .tabs input:checked+.tab_item {

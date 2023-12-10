@@ -47,20 +47,20 @@ input[name="tab_item"] {
 
 /*タブ切り替えの中身のスタイル*/
 .tab_content {
-    display: none;
+    display: block;
     clear: both;
     overflow: hidden;
 }
 
 
 /*選択されているタブのコンテンツのみを表示*/
-#tab1:checked~#tab1_content,
+/* #tab1:checked~#tab1_content,
 #tab2:checked~#tab2_content,
 #tab3:checked~#tab3_content ,
 #tab4:checked~#tab4_content ,
 #tab5:checked~#tab5_content {
     display: block;
-}
+} */
 
 /*選択されているタブのスタイルを変える*/
 .tabs input:checked+.tab_item {

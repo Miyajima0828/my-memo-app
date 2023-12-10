@@ -15,14 +15,16 @@ use Livewire\Livewire;
 class Tab extends Component
 {
     protected $listeners = [
-        'TabSelect' => 'tabSelect'
+        'TabSelect' => 'tabSelect',
+        'saveText'
     ];
     public $userMain, $mainIdArray = [], $userSub;
     public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
-    public $nowMainCategory, $deleteMainCheck, $nowSubId;
+    public $nowMainCategory, $deleteMainCheck ,$nowSub;
     public $currentMain;
-    public $tabs,$text;
+    public $tabs,$submitText;
+    public $checkedKey = 0;
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
         // Livewireデータを直接アクセス
@@ -80,14 +82,19 @@ class Tab extends Component
         // dd($tabs);
 
     }
-    public function saveText()
-    {
-        
-            Sub::where('id', '=', '$nowSubId')
-                ->uptate([
-                    'text' => $this->text,
+    public function saveText(string $nowSub)
+    {  
+            $userId = Auth::id();
+            // dd('aa');
+            Sub::
+            join('main', 'sub.main_id', '=', 'main.id')
+            ->where('user_id', '=', "$userId")
+            ->where('sub', '=', "$nowSub")
+                ->update([
+                    'text' => $this->submitText,
                 ]);
-            dd($this);
+        return redirect()->route('dashboard');
+            
 
 
     }
@@ -96,6 +103,9 @@ class Tab extends Component
     {
         if (!empty($this->userSub)) {
             $this->tabSelect();
+            // dd($this->tabs);
+            $this->submitText=$this->tabs[$this->checkedKey]['text'];
+
         }
         // if ($request->ajax()) {
         //     $this->saveText();
