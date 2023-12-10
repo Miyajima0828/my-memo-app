@@ -17,6 +17,7 @@ class Tab extends Component
     protected $listeners = [
         'TabSelect' => 'tabSelect',
         'saveText'
+
     ];
     public $userMain, $mainIdArray = [], $userSub;
     public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
@@ -70,10 +71,9 @@ class Tab extends Component
                         ->orderBy('sub.updated_at', 'desc')
                         ->take(5);
                 }, function ($tmp_query) {
-                $tmp_query
-                    ->orderBy('sub.updated_at', 'desc');
-            });
-
+                    $tmp_query
+                        ->orderBy('sub.updated_at', 'desc');
+                });
         }
 
         $tabs = $query->get()->toArray();
@@ -99,7 +99,7 @@ class Tab extends Component
 
     }
 
-    public function render(Request $request)
+    public function render()
     {
         if (!empty($this->userSub)) {
             $this->tabSelect();
@@ -111,5 +111,11 @@ class Tab extends Component
         //     $this->saveText();
         // }
         return view('livewire.tab');
+    }
+    protected function rules(): array
+    {
+        return [
+            'text' => 'required',
+        ];
     }
 }
