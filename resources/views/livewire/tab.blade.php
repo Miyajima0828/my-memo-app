@@ -17,14 +17,9 @@
        
 
         <div class="tab_content z-50" >
-            <div class="tab_content_description">
                 @csrf
-
-                <textarea style="height:80vh;" class="w-full border-none " 
+                <textarea style="height:86vh;" class="w-full border-none resize-none text-xl" 
                 wire:change.self="saveText('{{$tabs[$checkedKey]['sub']}}')" wire:model.lazy="submitText">{{$tabs[$checkedKey]['text']}}</textarea>
-                
-
-            </div>
         </div>
         
 
