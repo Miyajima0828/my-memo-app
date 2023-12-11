@@ -1,9 +1,9 @@
 <div>
-    <div>
-        <p class="text-lg font-semibold mb-1">メインカテゴリー&nbsp;&nbsp;<span wire:click="openModal"><i
-                    class="fa-solid fa-plus text-xs text-gray-300"></i></span></p>
+    <div class="flex items-end justify-between">
+        <p class="text-lg font-semibold mb-1">メインカテゴリー</p>
+        <i wire:click="openModal" class="fa-solid fa-plus text-xs text-gray-300 mb-3"></i>
     </div>
-    
+
     <x-confirmation-modal wire:model="isModal">
         <x-slot name="title">
             メインカテゴリー、サブカテゴリーの追加
