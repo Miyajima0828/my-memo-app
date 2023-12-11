@@ -29,6 +29,7 @@ class MainCategory extends Component
         if ($this->isCheck) {
             $userId = Auth::id();
 
+            dd($this);
 
             $mainCreate =
                 Main::create([

@@ -34,7 +34,12 @@ class Tab extends Component
         $this->userSub = $userSub;
     }
 
-
+    public function checked( $key ) {
+        $this->checkedKey = $key;
+        $this->submitText=$this->tabs[$this->checkedKey]['text'];
+        // dd($this);
+        
+    }
     public function saveToDatabase()
     {
         // 現在ログインしているユーザーのIDを取得
@@ -103,7 +108,7 @@ class Tab extends Component
     {
         if (!empty($this->userSub)) {
             $this->tabSelect();
-            // dd($this->tabs);
+            // dd($this);
             $this->submitText=$this->tabs[$this->checkedKey]['text'];
 
         }
@@ -115,7 +120,7 @@ class Tab extends Component
     protected function rules(): array
     {
         return [
-            'text' => 'required',
+            'submitText' => 'max:10000'
         ];
     }
 }

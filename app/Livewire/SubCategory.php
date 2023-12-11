@@ -52,6 +52,7 @@ class SubCategory extends Component
             Sub::create([
                 'sub' => $this->subCate,
                 'main_id' => $this->currentMainId,
+                'text' => ''
             ]);
         }
 
@@ -141,6 +142,8 @@ class SubCategory extends Component
     }
     public function render()
     {
+        // dd($this);
+
         return view('livewire.subcategory');
     }
 }

@@ -7,7 +7,7 @@
     <!-- 画面下部分 -->
     <div class="flex ">
 
-            <div id="whenLogin">
+            <div id="whenLogin" >
                 @php
                 $userMainCount = count($userMain)
                 @endphp
@@ -44,14 +44,13 @@
 
 
             </div>
-            @livewire('tab', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain, 'mainId' => $mainId])
+            @livewire('tab', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
             
         <!-- <div class="py-12">
         <div class="max-w-7xl sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-welcome /> -->
     </div>
-    </div>
-    </div>
+
     @livewireScripts
 </x-app-layout>

@@ -15,7 +15,7 @@ class Sub extends Model
     use HasFactory;
 
     // DBにsaveするときに大量代入するため
-    protected $fillable = ['sub', 'main_id'];
+    protected $fillable = ['sub', 'main_id' ,'text'];
 
     // mainモデルとリレーション
     public function main()
