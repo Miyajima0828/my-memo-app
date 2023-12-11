@@ -1,9 +1,9 @@
-<form id="form"  wire:focusin="setWord()">
+<form id="form"  wire:focusout="test()" wire:focusin="setWord()">
     <input type="search" id="search" class="w-full h-8 text-center border-[grey] border-t-[2px] border-[2px] rounded-[15px] " wire:model.live.debounce.500ms="keyword" value="{{request('search')}}" placeholder="検索">
     <div id="result" class="relative d-flex justify-content-center ">
 
         @if(filled($keyword) && !is_null($posts))
-        <div style="width: 200vw; height: 200vh;" class="overflow-hidden absolute bg-slate-300 right-0 z-49"></div>
+        <div style="width: 100vw; height: 100vh;" class="overflow-clip fixed w-full bg-slate-300 opacity-50  top-0 right-0 z-49" wire:click="searchReset()"></div>
         <div class="absolute z-50 mr-2 w-full bg-white rounded-md shadow-lg" >
             <ul id="list1" class="z-51">
                 <li class="list-none">

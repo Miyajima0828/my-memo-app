@@ -23,6 +23,9 @@ class Search extends Component
         
         return view('livewire.search');
     }
+    public function test() {
+        // dd($this);
+    }
 
     public function getKeyword() {
         $query = Post::query();
@@ -54,8 +57,9 @@ class Search extends Component
         if($this->setKeyword){
             $this->keyword = $this->setKeyword;
             $this->getKeyword();
+            // dd($this);
         }
-        // dd($this);
+        
     }
     
     public function onClickUpdate($nowSub)

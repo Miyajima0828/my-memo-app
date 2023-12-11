@@ -5,7 +5,7 @@
     </x-slot>
 
     <!-- 画面下部分 -->
-    <div class="flex ">
+    <div class="flex justify-between">
 
             <div id="whenLogin" >
                 @php
