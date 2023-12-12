@@ -99,7 +99,7 @@ class SubCategory extends Component
     {
         $this->updateMainCheck = true;
     }
-
+    
     public function updateMain($mainId)
     {
         $mainRecord = Main::find($mainId);
