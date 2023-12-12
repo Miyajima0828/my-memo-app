@@ -7,13 +7,13 @@
         <div class="absolute z-50 mr-2 w-full bg-white rounded-md shadow-lg" >
             <ul id="list1" class="z-51">
                 <li class="list-none">
-                    <p class="relative absolute top-0 pl-10 text-justify rounded-md bg-slate-100"><span class="inline-block w-1/3">メインカテゴリー</span><span class="inline-block w-1/3">サブカテゴリー</span><span class="inline-block w-1/3">検索結果</span>
+                    <p class="relative absolute top-0 pl-10 text-justify rounded-md bg-slate-100"><span class="inline-block w-1/3">メインカテゴリー</span><span class="inline-block w-1/3">サブカテゴリー</span><span class="inline-block w-1/3">本文</span>
                     </p>
                 </li>
                 @foreach ($posts as $key=>$post)
                 <label>
                     <li class="list-none">
-                        <p class="relative absolute top-0 pl-10 text-justify rounded-md hover:bg-sky-100 focus:bg-sky-100" tabindex="0" wire:click="onClickUpdate('{{$post->sub}}')"><span class="inline-block w-1/3">{{$post->main}}</span><span class="inline-block w-1/3">{{$post->sub}}</span><span class="inline-block w-1/3">{{$keyword}}</span></p>
+                        <p class="relative absolute top-0 pl-10 text-justify rounded-md hover:bg-sky-100 focus:bg-sky-100" tabindex="0" wire:keydown.enter="onClickUpdate('{{$post->sub}}')" wire:click="onClickUpdate('{{$post->sub}}')"><span class="inline-block w-1/3">{{$post->main}}</span><span class="inline-block w-1/3">{{$post->sub}}</span><span class="inline-block w-1/3">{{$post->text}}</span></p>
                     </li>
                 </label>
                 @endforeach
@@ -23,56 +23,5 @@
         @endif
 
     </div>
-    <script>
-        const result = document.querySelector('#result');
-        result.addEventListener('keydown', function(event) {
-            const listId = document.getElementById('list1');
-            if (listId !== null) {
-                console.log('aaa');
-                listId.addEventListener('keydown', function(event) {
-                    let target = event.target;
-                    let next = null;
-
-                    // 矢印キーの判定とフォーカス移動先の取得
-                    if (event.key === 'ArrowDown') {
-                        next = target.nextElementSibling;
-                    } else if (event.key === 'ArrowUp') {
-                        next = target.previousElementSibling;
-                    }
-
-                    // フォーカスを移動
-                    if (next && next.tagName === 'LI') {
-                        next.focus();
-                        event.preventDefault();
-                    }
-                });
-            } else {
-                console.log('bbb');
-            }
-        });
-
-        // const listId = document.getElementById('list1');
-        // if (listId !== null) {
-        //     console.log('aaa');
-        //     listId.addEventListener('keydown', function(event) {
-        //         let target = event.target;
-        //         let next = null;
-
-        //         // 矢印キーの判定とフォーカス移動先の取得
-        //         if (event.key === 'ArrowDown') {
-        //             next = target.nextElementSibling;
-        //         } else if (event.key === 'ArrowUp') {
-        //             next = target.previousElementSibling;
-        //         }
-
-        //         // フォーカスを移動
-        //         if (next && next.tagName === 'LI') {
-        //             next.focus();
-        //             event.preventDefault();
-        //         }
-        //     });
-        // } else {
-        //     console.log('bbb');
-        // }
-    </script>
+    
 </form>

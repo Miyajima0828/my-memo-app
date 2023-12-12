@@ -11,7 +11,9 @@ use Carbon\Carbon;
 
 class Search extends Component
 {
-
+    protected $listeners = [
+        'getKeyword'
+    ];
     public $keyword,$setKeyword, $posts;
 
     // この部分は編集不要
@@ -57,7 +59,6 @@ class Search extends Component
         if($this->setKeyword){
             $this->keyword = $this->setKeyword;
             $this->getKeyword();
-            // dd($this);
         }
         
     }
