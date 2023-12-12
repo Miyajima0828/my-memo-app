@@ -7,7 +7,7 @@
     <!-- 画面下部分 -->
     <div class="flex justify-between">
 
-        <div style="width: 17vw;">
+        <div style="width: 17vw; padding-left:2vw;">
             @php
             $userMainCount = count($userMain)
             @endphp
@@ -40,5 +40,4 @@
                 <x-welcome /> -->
     </div>
 
-    @livewireScripts
 </x-app-layout>

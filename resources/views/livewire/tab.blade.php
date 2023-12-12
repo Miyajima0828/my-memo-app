@@ -11,7 +11,7 @@
                         <input id="tab{{$key+1}}" type="radio" name="tab_item">
                         @endif
 
-                        <label class="tab_item " for="tab{{$key+1}}" wire:click="checked({{$key}})">{{$data['main']}}&nbsp;&nbsp;{{$data['sub']}}</label>
+                        <label class="tab_item " for="tab{{$key+1}}" wire:click="checked({{$key}})">{{Str::limit($data['main'], 10)}}&nbsp;&nbsp;{{Str::limit($data['sub'], 10)}}</label>
 
 
                         @endforeach
