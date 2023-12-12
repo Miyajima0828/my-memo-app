@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-end justify-between">
-        <p class="text-lg font-semibold mb-1">メインカテゴリー</p>
-        <i wire:click="openModal" class="fa-solid fa-plus text-xs text-gray-300 mb-3"></i>
+        <p class="text-lg font-semibold mb-0">メインカテゴリー</p>
+        <i wire:click="openModal" class="fa-solid fa-plus text-xs text-gray-300 mb-2"></i>
     </div>
 
     <x-confirmation-modal wire:model="isModal">

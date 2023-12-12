@@ -7,7 +7,7 @@
     <!-- 画面下部分 -->
     <div class="flex ">
 
-        <div id="category">
+        <div style="width: 17vw;">
             @php
             $userMainCount = count($userMain)
             @endphp

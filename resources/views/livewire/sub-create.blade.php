@@ -83,7 +83,7 @@
                 $nowSubId = $subItemArray['id'];
             @endphp
             <div class="flex items-end justify-between mt-0 pt-0 hover:bg-slate-100">
-                <a href="#" class="indent-4">{{ $subItemArray['sub'] }}</a>
+                <a href="#" class="indent-4">{{ Str::limit($subItemArray['sub'], 8) }}</a>
                 <div class="text-xs text-gray-300 mb-1">
                     <a href="#" wire:click="openModalSubUpdate({{ $nowSubId }})"><i
                             class="fa-solid fa-retweet ml-1"></i></a>
@@ -198,7 +198,7 @@
                 $nowSubId = $subItemArray['id'];
             @endphp
             <div class="flex items-end justify-between mt-0 pt-0 hover:bg-slate-100">
-                <a href="#" class="indent-4">{{ $subItemArray['sub'] }}</a>
+                <a href="#" class="indent-4">{{ Str::limit($subItemArray['sub'], 8) }}</a>
                 <div class="text-xs text-gray-300 mb-1">
                     <a href="#" wire:click="openModalSubUpdate({{ $nowSubId }})"><i
                             class="fa-solid fa-retweet ml-1"></i></a>
