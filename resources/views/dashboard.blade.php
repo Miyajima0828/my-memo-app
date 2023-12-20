@@ -33,8 +33,7 @@
             @elseif ($userMainCount == 0)
             @livewire('main-create')
             @endif
-            @livewire('navigation-menu', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain,
-            'mainId' => $mainId])
+            
         </div>
         @livewire('tab', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
     </div>

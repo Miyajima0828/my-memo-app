@@ -1,8 +1,8 @@
 <x-app-layout>
     
 
-    <div>
-        <div class="bg-orange-200 max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+    <div class="bg-slate-100">
+        <div class="w-full max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
