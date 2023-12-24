@@ -23,21 +23,10 @@
 </head>
 
 <body class="font-sans antialiased ">
-    <div class="flex items-center h-16 mr-16">
-        <div class="basis-1/5">
-            @livewire('navigation-menu')
-        </div>
-        @if (isset($header))
-        <header class="bg-white text-right basis-4/5">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative">
-                {{ $header }}
-            </div>
-        </header>
-        @endif
-    </div>
+    
 
     <!-- Page Heading -->
-
+    
     <!-- Page Content -->
     <main>
       {{$slot}}

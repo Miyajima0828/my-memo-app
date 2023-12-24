@@ -7,14 +7,14 @@
     <!-- 各mainカテゴリーに該当するsubカテゴリーが5個未満なら、 -->
     @if ($userSubCount < 5)
         <!-- 各mainカテゴリーの右端に＋マーク表示し、mainカテゴリーに該当するsubカテゴリーをmainカテゴリの下に表示 -->
-        <div class="flex items-end justify-between mt-3">
-            <h2 class="text-lg font-medium mb-0 pb-0">
+        <div class="flex items-end justify-between mt-3 max-lg:border-dashed max-lg:border-b-2 max-lg:border-white">
+            <h2 class="text-lg font-medium max-lg:px-8">
                 {{ Str::limit($nowMainCategory, 10) }}
             </h2>
-            <div class="text-xs text-gray-300 mb-1">
-                <a href="#" wire:click="openModalMainUpdate()"><i class="fa-solid fa-retweet ml-1"></i></a>
-                <a href="#" wire:click="openModalMainDelete()"><i class="fa-solid fa-trash-can ml-1"></i></a>
-                <a href="#" wire:click="openModalSubCreate"><i class="fa-solid fa-plus ml-1"></i></a>
+            <div class="text-lg text-gray-400 max-lg:text-white">
+                <a href="#" wire:click="openModalSubCreate"><i class="fa-solid fa-plus ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
+                <a href="#" wire:click="openModalMainUpdate()"><i class="fa-solid fa-retweet ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
+                <a href="#" wire:click="openModalMainDelete()"><i class="fa-solid fa-trash-can ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
             </div>
         </div>
 
@@ -82,13 +82,13 @@
             @php
                 $nowSubId = $subItemArray['id'];
             @endphp
-            <div class="flex items-end justify-between mt-0 pt-0 hover:bg-slate-100">
-                <a href="#" class="indent-4"><span wire:click="onClickUpdate('{{ $subItemArray['sub'] }}')">{{ Str::limit($subItemArray['sub'], 8) }}</span></a>
-                <div class="text-xs text-gray-300 mb-1">
+            <div class="flex items-end justify-between mt-0 pt-0 lg:hover:bg-slate-100 max-lg:border-dotted max-lg:border-b-2 max-lg:border-white">
+                <a href="#" class="indent-4 max-lg:px-8"><span wire:click="onClickUpdate('{{$nowSubId}}','{{ $subItemArray['sub'] }}')">{{ Str::limit($subItemArray['sub'], 8) }}</span></a>
+                <div class="text-lg text-gray-400 max-lg:text-white">
                     <a href="#" wire:click="openModalSubUpdate({{ $nowSubId }})"><i
-                            class="fa-solid fa-retweet ml-1"></i></a>
+                            class="fa-solid fa-retweet ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
                     <a href="#" wire:click="openModalSubDelete({{ $nowSubId }})"><i
-                            class="fa-solid fa-trash-can ml-1"></i></a>
+                            class="fa-solid fa-trash-can ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
                 </div>
             </div>
 
@@ -141,13 +141,13 @@
         <!-- 各mainカテゴリーに該当するsubカテゴリーが5個なら、 -->
     @else
         <!-- 各mainカテゴリーを表示し、mainカテゴリーに該当するsubカテゴリーをmainカテゴリ下に表示 -->
-        <div class="flex items-end justify-between mt-3">
-            <h2 class="text-lg font-medium mb-0 pb-0">
+        <div class="flex items-end justify-between mt-3 max-lg:border-dashed max-lg:border-b-2 max-lg:border-white">
+            <h2 class="text-lg font-medium max-lg:px-8">
                 {{ Str::limit($nowMainCategory, 10) }}
             </h2>
-            <div class="text-xs text-gray-300 mb-1">
-                <a href="#" wire:click="openModalMainUpdate()"><i class="fa-solid fa-retweet ml-1"></i></a>
-                <a href="#" wire:click="openModalMainDelete()"><i class="fa-solid fa-trash-can ml-1"></i></a>
+            <div class="text-lg text-gray-400 max-lg:text-white">
+                <a href="#" wire:click="openModalMainUpdate()"><i class="fa-solid fa-retweet ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
+                <a href="#" wire:click="openModalMainDelete()"><i class="fa-solid fa-trash-can ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
             </div>
         </div>
 
@@ -197,13 +197,13 @@
             @php
                 $nowSubId = $subItemArray['id'];
             @endphp
-            <div class="flex items-end justify-between mt-0 pt-0 hover:bg-slate-100">
-                <a href="#" class="indent-4"><span wire:click="onClickUpdate('{{ $subItemArray['sub'] }}')">{{ Str::limit($subItemArray['sub'], 8) }}</span></a>
-                <div class="text-xs text-gray-300 mb-1">
+            <div class="flex items-end justify-between mt-0 pt-0 lg:hover:bg-slate-100 max-lg:border-dotted max-lg:border-b-2 max-lg:border-white">
+                <a href="#" class="indent-4 max-lg:px-8"><span wire:click="onClickUpdate('{{$nowSubId}}','{{ $subItemArray['sub'] }}')">{{ Str::limit($subItemArray['sub'], 8) }}</span></a>
+                <div class="text-lg text-gray-400 max-lg:text-white">
                     <a href="#" wire:click="openModalSubUpdate({{ $nowSubId }})"><i
-                            class="fa-solid fa-retweet ml-1"></i></a>
+                            class="fa-solid fa-retweet ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
                     <a href="#" wire:click="openModalSubDelete({{ $nowSubId }})"><i
-                            class="fa-solid fa-trash-can ml-1"></i></a>
+                            class="fa-solid fa-trash-can ml-1 max-lg:px-3 max-lg:mx-1"></i></a>
                 </div>
             </div>
 

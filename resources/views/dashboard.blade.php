@@ -1,41 +1,24 @@
 <x-app-layout>
     <!-- 画面上部分 -->
-    <x-slot name="header">
-        @livewire('search')
-    </x-slot>
+    <div class="flex items-center h-16 mr-16">
+        <div class="basis-1/5">
+            @include('navigation-menu',['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
+        </div>
+
+        <header class="bg-white text-right basis-4/5">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative">
+                @livewire('search')
+            </div>
+        </header>
+
+    </div>
+
 
     <!-- 画面下部分 -->
     <div class="flex justify-between">
-        <div style="width: 17vw; padding-left:2vw;" class="max-sm:hidden">
-            @php
-            $userMainCount = count($userMain)
-            @endphp
-
-            <!-- もしユーザーがDBにmain_idをcount=5持っていたら -->
-            @if ($userMainCount == 5)
-            @foreach ($mainIdArray as $mainId)
-            @livewire('sub-create', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain,
-            'mainId' => $mainId])
-            @endforeach
-
-            <!-- もしユーザーがmain_idをcount=1～4持っていたら -->
-            @elseif ($userMainCount >= 1 && 4 >= $userMainCount)
-            @livewire('main-create')
-
-            <div>
-                @foreach ($mainIdArray as $mainId)
-                @livewire('sub-create', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' =>
-                $userMain, 'mainId' => $mainId])
-                @endforeach
-            </div>
-
-            <!-- もしユーザーがmain_idをcount=0持っていたら -->
-            @elseif ($userMainCount == 0)
-            @livewire('main-create')
-            @endif
-            
+        <div style="width: 17vw;padding-left:2vw;" class="max-lg:hidden">
+            @livewire('category-side', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
         </div>
         @livewire('tab', ['mainIdArray' => $mainIdArray, 'userSub' => $userSub, 'userMain' => $userMain])
     </div>
-
 </x-app-layout>

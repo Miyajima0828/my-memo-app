@@ -1,4 +1,4 @@
-<div class="tabs">
+<div class="tabs max-lg:w-full">
         <form>
                 @if(!is_null($tabs))
 
@@ -11,7 +11,7 @@
                         <input id="tab{{$key+1}}" type="radio" name="tab_item">
                         @endif
 
-                        <label class="tab_item " for="tab{{$key+1}}" wire:click="checked({{$key}})">{{Str::limit($data['main'], 10)}}&nbsp;&nbsp;{{Str::limit($data['sub'], 10)}}</label>
+                        <label class="tab_item " for="tab{{$key+1}}" wire:click="checked({{$key}})"><p>{{Str::limit($data['main'], 10)}}</p><p>{{Str::limit($data['sub'], 10)}}</p></label>
 
 
                         @endforeach
@@ -30,4 +30,3 @@
 
 
 </div>
-<!-- $emitto 引数 laravel livewire -->

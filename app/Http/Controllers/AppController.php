@@ -37,35 +37,9 @@ class AppController extends Controller
             $userSub[$mainId] = Sub::where('main_id', $mainId)->get()->toArray();
             $testCount[$mainId] = count($userSub[$mainId]);
         }
-        // dd($userMain);
-        // dd($mainIdRecords);
-        // dd($testCount);
-        // $test = $userSub[1];
-        // dd($test);
-        // dd($userSub);
-        // dd($mainIdArray);
-
-        // foreach($test->subs as $data) {
-        //     dd($test);
-        // dd($data->sub);
-
-        // // Userモデルを使って、ログインしているユーザーに関連するMainカラムのデータを取得
-        // $user = User::with(['mains' => function ($query) {
-        //     // Mainモデルの中から取得したいカラムを指定
-        //     $query->select('main');
-        // }])->find($userId);
-
-        // dd($userMain);
+        
         return view('dashboard', compact('userMain', 'mainIdArray', 'userSub'));
+       
     }
 
-    // とりあえず、生のモデルから変数としてひっぱる
-//     public function getTest()
-//     {
-//         $texts = Sub::all('text');
-//         $user = User::all();
-//         // $texts = Text::select('text')->get();
-//         // dd($texts);
-//         return view('layouts.app', compact('texts', 'user'));
-//     }
 }

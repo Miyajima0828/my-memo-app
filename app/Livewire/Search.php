@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire;
 
+use App\Models\Main;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\Sub;
@@ -30,12 +31,12 @@ class Search extends Component
     }
 
     public function getKeyword() {
-        $query = Post::query();
+        $query = Main::query();
         $userId = Auth::id();
         
         if(filled($this->keyword)) {
             $query
-            ->join('main','main.id','=','sub.main_id')
+            ->join('sub','main.id','=','main_id')
             ->where('user_id','=',"$userId")
             ->whereNull('sub.deleted_at')
             ->where(function($tmp_query){
@@ -63,13 +64,16 @@ class Search extends Component
         
     }
     
-    public function onClickUpdate($nowSub)
+    public function onClickUpdate($nowSubId,$nowSub)
     {
-        $query = Post::query();
+        $query = Sub::query();
         $userId = Auth::id();
+
+
         $query
-            ->join('main', 'sub.main_id', '=', 'main.id')
+            ->join('main', 'main.id', '=', 'sub.main_id')
             ->where('user_id', '=', "$userId")
+            ->where('sub.id','=',"$nowSubId")
             ->where('sub','=', "$nowSub")
             ->update(['updated_at' => Carbon::now()]);
 

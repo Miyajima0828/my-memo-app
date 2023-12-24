@@ -1,6 +1,7 @@
 <x-app-layout>
-    
-
+    <div class="m-4 bg-white">
+    @livewire('navigation-menu')
+    </div>
     <div class="bg-slate-100">
         <div class="w-full max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())

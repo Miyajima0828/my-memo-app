@@ -1,10 +1,10 @@
 <nav x-data="{ open: false }" class="bg-white border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="hidden sm:flex sm:items-center ">
+        <div class="hidden lg:flex lg:items-center ">
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('dashboard') }}">
-                    <x-application-mark class="block h-9 w-auto" />
+                <img class="w-8" src="{{ asset('logo.png')}}" >
                 </a>
             </div>
             <!-- Settings Dropdown -->
@@ -65,42 +65,46 @@
         </div>
 
         <!-- Hamburger -->
-        <div class="-me-2 flex items-center sm:hidden">
-            <!-- <button @click="open = ! open"
-                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button> -->
-            <button id="button" type="button" class="fixed top-6 left-6 z-10">
+        <div class="-me-2 flex items-center lg:hidden">
+
+            <button id="button" type="button" class="fixed z-20 top-3 right-6">
                 <i id="bars" class="fa-solid fa-bars fa-2x"></i>
-                <i id="xmark" class="fa-solid fa-xmark fa-2x hidden text-white"></i>
             </button>
             <ul id="menu"
-                class="fixed top-0 right-0 z-0 w-full translate-x-full bg-blue-200 text-center text-xl font-bold text-white transition-all ease-linear">
-                <li class="p-6">
-                    <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('ホーム') }}
-                    </x-responsive-nav-link>
-                </li>
-                <li class="p-3"><x-responsive-nav-link href="{{ route('profile.show') }}"
-                        :active="request()->routeIs('profile.show')">
-                        {{ __('Profile') }}
-                    </x-responsive-nav-link></li>
-                <li class="p-3">
-                    <form method="POST" action="{{ route('logout') }}" x-data>
-                        @csrf
-
-                        <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                            {{ __('Log Out') }}
+                class="fixed w-full h-full overflow-y-scroll top-0 right-0 z-10 mb-12 pb-12 translate-x-full bg-teal-500 text-white text-center text-xl font-bold transition-all ease-linear">
+                <div class="flex w-full justify-end bg-white">
+                    <li class="py-2">
+                        <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Home') }}
                         </x-responsive-nav-link>
-                    </form>
-                </li>
+                    </li>
+                    <li class="py-2"><x-responsive-nav-link href="{{ route('profile.show') }}"
+                            :active="request()->routeIs('profile.show')">
+                            {{ __('Profile') }}
+                        </x-responsive-nav-link></li>
+                    <li class="py-2 mr-16">
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </li>
+                </div>
+                @if(Request::is('dashboard'))
+                    @if(!empty($userMain))
+                    <div class="p-2">
+                    @livewire('category-side', ['userMain' => $userMain, 'mainIdArray' => $mainIdArray, 'userSub' =>
+                    $userSub])
+                    </div>
+                    @else
+                        <div class="p-2">
+                            @livewire('main-create')
+                        </div>
+                    @endif
+                @endif
             </ul>
-           
+
         </div>
     </div>
 

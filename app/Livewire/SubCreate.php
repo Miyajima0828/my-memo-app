@@ -103,13 +103,14 @@ class SubCreate extends Component
 
         return redirect()->route('dashboard');
     }
-    public function onClickUpdate($nowSub)
+    public function onClickUpdate($nowSubId,$nowSub)
     {
     $query = Sub::query();
     $userId = Auth::id();
     $query
     ->join('main', 'sub.main_id', '=', 'main.id')
     ->where('user_id', '=', "$userId")
+    ->where('sub.id','=',"$nowSubId")
     ->where('sub','=', "$nowSub")
     ->update(['updated_at' => Carbon::now()]);
     // $this->dispatch('TabSelect');

@@ -26,7 +26,7 @@ class MainCreate extends Component
     {
         // 現在ログインしているユーザーのIDを取得
             $userId = Auth::id();
-
+            if (!empty($this->mainCate) && !empty($this->subCate)) {
             $mainCreate =
                 Main::create([
                     'user_id' => $userId,
@@ -37,7 +37,7 @@ class MainCreate extends Component
                 'sub' => $this->subCate,
                 'main_id' => $mainCreate->id,
             ]);
-
+        }
         return redirect()->route('dashboard');
     }
 

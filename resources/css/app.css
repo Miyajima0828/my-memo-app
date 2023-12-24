@@ -19,16 +19,25 @@
 /*タブのスタイル*/
 .tab_item {
     width: calc(100%/5);
-    height: 4vh;
+    height: 3em;
     border-bottom: 3px solid #5ab4bd;
     background-color: #d9d9d9;
     /* line-height: 3vh; */
-    font-size: 2.5vh;
-    text-align: center;
+    font-size: 0.8em;
     color: #565656;
-    vertical-align: middle;
     font-weight: bold;
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 0;
+}
+
+.tab_item p:first-child{
+    text-align: left;
+    margin-left: 1em;
+}
+.tab_item p{
+    text-align: center;
+    
 }
 
 .tab_item:hover {

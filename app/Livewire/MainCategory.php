@@ -29,38 +29,26 @@ class MainCategory extends Component
         if ($this->isCheck) {
             $userId = Auth::id();
 
-            dd($this);
 
-            $mainCreate =
-                Main::create([
-                    'user_id' => $userId,
-                    'main' => $this->mainCate,
+            if (!empty($this->mainCate) && !empty($this->subCate)) {
+                $mainCreate =
+                    Main::create([
+                        'user_id' => $userId,
+                        'main' => $this->mainCate,
+                    ]);
+
+                Sub::create([
+                    'sub' => $this->subCate,
+                    'main_id' => $mainCreate->id,
                 ]);
-
-            Sub::create([
-                'sub' => $this->subCate,
-                'main_id' => $mainCreate->id,
-            ]);
+            }
         }
 
-        // TODO データベースに挿入後、Livewireのステートを更新
-        // $this->emitTo('subcategory', 'refresh');
 
-        // Livewireのステートを更新
-        // $this->setName('refresh');
-
-        // JavaScriptイベントを発火して非同期通信が完了したことを通知
-        // $this->dispatch('database-save-complete');
-
-        // 変数をクリアする（任意）
-        // $this->reset(['mainCate', 'subCate', 'isCheck', 'wCheck']);
 
         $this->isCheck = false;
 
-        // $this->main = '';
-        // $this->sub = '';
-        // $mainCreate = '';
-        // $userId = '';
+
 
         return redirect()->route('dashboard');
     }

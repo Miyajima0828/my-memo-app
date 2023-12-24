@@ -22,9 +22,9 @@ class Tab extends Component
     public $userMain, $mainIdArray = [], $userSub;
     public $isCheck, $mainCate, $subCate, $wCheck, $mainId, $currentMainId;
     public $nowSubItemArray, $currentSub, $deleteSubCheck;
-    public $nowMainCategory, $deleteMainCheck ,$nowSub;
+    public $nowMainCategory, $deleteMainCheck, $nowSub;
     public $currentMain;
-    public $tabs,$submitText;
+    public $tabs, $submitText;
     public $checkedKey = 0;
     public function mount(array $mainIdArray, array $userSub, array $userMain)
     {
@@ -34,11 +34,12 @@ class Tab extends Component
         $this->userSub = $userSub;
     }
 
-    public function checked( $key ) {
+    public function checked($key)
+    {
         $this->checkedKey = $key;
-        $this->submitText=$this->tabs[$this->checkedKey]['text'];
+        $this->submitText = $this->tabs[$this->checkedKey]['text'];
         // dd($this);
-        
+
     }
     public function saveToDatabase()
     {
@@ -59,47 +60,58 @@ class Tab extends Component
 
     public function tabSelect()
     {
-        $query = Sub::query();
-        $userId = Auth::id();
-        $cnt = 0;
+        // $query = Sub::query();
+        // $userId = Auth::id();
+        // $cnt = 0;
+        // foreach ($this->userSub as $array) {
+        //     foreach ($array as $data) {
+        //         $cnt++;
+        //     }
+        // }
+        // if (!empty($this->userSub)) {
+        //     $query
+        //         ->join('main', 'sub.main_id', '=', 'main.id')
+        //         ->where('user_id', '=', "$userId")
+        //         ->when($cnt >= 5, function ($tmp_query) {
+        //             $tmp_query
+        //                 ->orderBy('sub.updated_at', 'desc')
+        //                 ->take(5);
+        //         }, function ($tmp_query) {
+        //             $tmp_query
+        //                 ->orderBy('sub.updated_at', 'desc');
+        //         });
+        // }
+
+        // $tabs = $query->get()->toArray();
+
+        // $this->tabs = $tabs;
+        $tab_array = [];
         foreach ($this->userSub as $array) {
-            foreach ($array as $data) {
-                $cnt++;
+            foreach ($array as $value) {
+                $tab_array[] = ['updated_at' => $value['updated_at'], 'main' => $this->userMain[array_keys($this->mainIdArray, $value['main_id'])[0]], 'sub' => $value['sub'], 'text' => $value['text']];
             }
         }
-        if (!empty($this->userSub)) {
-            $query
-                ->join('main', 'sub.main_id', '=', 'main.id')
-                ->where('user_id', '=', "$userId")
-                ->when($cnt >= 5, function ($tmp_query) {
-                    $tmp_query
-                        ->orderBy('sub.updated_at', 'desc')
-                        ->take(5);
-                }, function ($tmp_query) {
-                    $tmp_query
-                        ->orderBy('sub.updated_at', 'desc');
-                });
+        $updateArray = array_column($tab_array, 'updated_at');
+        array_multisort($updateArray, SORT_DESC, $tab_array);
+       
+        if (count($updateArray) < 5) {
+            $this->tabs = $tab_array;
+        } else {
+            $this->tabs = array_slice($tab_array, 0, 5);
         }
-
-        $tabs = $query->get()->toArray();
-        $this->tabs = $tabs;
-        // dd($this->userSub);
-        // dd($tabs);
-
     }
     public function saveText(string $nowSub)
-    {  
-            $userId = Auth::id();
-            // dd('aa');
-            Sub::
+    {
+        $userId = Auth::id();
+        Sub::
             join('main', 'sub.main_id', '=', 'main.id')
             ->where('user_id', '=', "$userId")
             ->where('sub', '=', "$nowSub")
-                ->update([
-                    'text' => $this->submitText,
-                ]);
+            ->update([
+                'text' => $this->submitText,
+            ]);
         return redirect()->route('dashboard');
-            
+
 
 
     }
@@ -108,13 +120,10 @@ class Tab extends Component
     {
         if (!empty($this->userSub)) {
             $this->tabSelect();
-            // dd($this);
-            $this->submitText=$this->tabs[$this->checkedKey]['text'];
+            $this->submitText = $this->tabs[$this->checkedKey]['text'];
 
         }
-        // if ($request->ajax()) {
-        //     $this->saveText();
-        // }
+
         return view('livewire.tab');
     }
     protected function rules(): array
