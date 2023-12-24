@@ -3,8 +3,8 @@
  カテゴリ別にメモを登録することができます。
  レスポンシブ対応しているのでスマホからもご確認いただけます。
 ![memo-screernshot](https://github.com/Miyajima0828/memo-application/assets/104330386/8460b98d-738e-4521-9ab0-0e941adbbff0)
-![Screenshot_20231224-173247](https://github.com/Miyajima0828/memo-application/assets/104330386/7e0dfe14-304a-430f-931d-a9f1b1f4340d)
-![Screenshot_20231224-173321](https://github.com/Miyajima0828/memo-application/assets/104330386/31893b05-e7f2-4c2c-bf88-5dd6c6b40a52)
+![Screenshot_20231224-173247](https://github.com/Miyajima0828/memo-application/assets/104330386/d83d9c44-86a5-4892-b5eb-38418a78e2af)
+![Screenshot_20231224-173321](https://github.com/Miyajima0828/memo-application/assets/104330386/43afe5d2-a77d-4547-8734-40a6e14f243e)
 
 
 # 使い方
