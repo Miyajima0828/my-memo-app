@@ -17,10 +17,9 @@
                         @endforeach
 
                 </div>
-
                 <div class="tab_content ">
                         @csrf
-                        <textarea style="height:86vh;" class="scrollbar w-full border-none resize-none text-xl" wire:change.self="saveText('{{$tabs[$checkedKey]['sub']}}')" wire:model.lazy="submitText">{{$submitText}}</textarea>
+                        <textarea style="height:86vh;" class="scrollbar w-full border-none resize-none text-xl" wire:change.self="saveText('{{$tabs[$checkedKey]['id']}}','{{$tabs[$checkedKey]['sub']}}')" wire:model.lazy="submitText">{{$submitText}}</textarea>
                 </div>
 
                 @endif

@@ -88,24 +88,25 @@ class Tab extends Component
         $tab_array = [];
         foreach ($this->userSub as $array) {
             foreach ($array as $value) {
-                $tab_array[] = ['updated_at' => $value['updated_at'], 'main' => $this->userMain[array_keys($this->mainIdArray, $value['main_id'])[0]], 'sub' => $value['sub'], 'text' => $value['text']];
+                $tab_array[] = ['id' => $value['id'], 'updated_at' => $value['updated_at'], 'main' => $this->userMain[array_keys($this->mainIdArray, $value['main_id'])[0]], 'sub' => $value['sub'], 'text' => $value['text']];
             }
         }
         $updateArray = array_column($tab_array, 'updated_at');
         array_multisort($updateArray, SORT_DESC, $tab_array);
-       
+
         if (count($updateArray) < 5) {
             $this->tabs = $tab_array;
         } else {
             $this->tabs = array_slice($tab_array, 0, 5);
         }
     }
-    public function saveText(string $nowSub)
+    public function saveText($nowSubId, $nowSub)
     {
         $userId = Auth::id();
         Sub::
             join('main', 'sub.main_id', '=', 'main.id')
             ->where('user_id', '=', "$userId")
+            ->where('sub.id', '=', "$nowSubId")
             ->where('sub', '=', "$nowSub")
             ->update([
                 'text' => $this->submitText,
