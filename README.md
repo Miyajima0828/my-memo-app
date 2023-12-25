@@ -24,7 +24,7 @@ https://my-memo-app.net/<br>
 - PHP 8.2.11
 - Laravel Framework 10.30.1
 - MySQL 5.7
-- Apche
+- Apache 2.4.54
 - Composer version 2.6.6
 - Jetstream 4.0
   - Livewire 3.0
