@@ -11,8 +11,8 @@
             <ul id="list1" >
                 <li class="list-none">
                     <p class="relative absolute top-0 lg:pl-10 max-lg:text-xs text-justify rounded-md bg-slate-100"><span
-                            class="inline-block text-center w-1/3">メインカテゴリー</span><span
-                            class="inline-block text-center w-1/3">サブカテゴリー</span><span class="inline-block text-center w-1/3">本文</span>
+                            class="inline-block text-center w-1/3">メイン</span><span
+                            class="inline-block text-center w-1/3">サブ</span><span class="inline-block text-center w-1/3">本文</span>
                     </p>
                 </li>
                 
@@ -26,9 +26,9 @@
                                 class="inline-block text-center w-1/3 max-lg:hidden">{{Str::limit($post->sub, 40)}}</span><span
                                 class="inline-block text-center w-1/3 max-lg:hidden">{{Str::limit($post->text, 40)}}</span>
                                 <span
-                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->main, 10)}}</span><span
-                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->sub, 10)}}</span><span
-                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->text, 10)}}</span></p>
+                                class="inline-block  w-1/3 lg:hidden">{{Str::limit($post->main, 10)}}</span><span
+                                class="inline-block  w-1/3 lg:hidden">{{Str::limit($post->sub, 10)}}</span><span
+                                class="inline-block  w-1/3 lg:hidden">{{Str::limit($post->text, 10)}}</span></p>
                     </li>
                 </label>
                 @endforeach
