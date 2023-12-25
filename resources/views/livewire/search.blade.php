@@ -10,21 +10,25 @@
         <div class="absolute z-50 mr-2 w-full bg-white rounded-md shadow-lg">
             <ul id="list1" >
                 <li class="list-none">
-                    <p class="relative absolute top-0 pl-10 text-justify rounded-md bg-slate-100"><span
-                            class="inline-block w-1/3">メインカテゴリー</span><span
-                            class="inline-block w-1/3">サブカテゴリー</span><span class="inline-block w-1/3">本文</span>
+                    <p class="relative absolute top-0 lg:pl-10 max-lg:text-xs text-justify rounded-md bg-slate-100"><span
+                            class="inline-block text-center w-1/3">メインカテゴリー</span><span
+                            class="inline-block text-center w-1/3">サブカテゴリー</span><span class="inline-block text-center w-1/3">本文</span>
                     </p>
                 </li>
                 
                 @foreach ($posts as $key=>$post)
                 <label>
                     <li class="list-none">
-                        <p class="relative absolute top-0 pl-10 text-justify rounded-md hover:bg-sky-100 focus:bg-sky-100"
+                        <p class="relative absolute top-0 lg:pl-10 text-justify rounded-md max-lg:text-xs hover:bg-sky-100 focus:bg-sky-100"
                             tabindex="0" wire:keydown.enter="onClickUpdate('{{$post->id}}','{{$post->sub}}')"
                             wire:click="onClickUpdate('{{$post->id}}','{{$post->sub}}')"><span
-                                class="inline-block w-1/3">{{Str::limit($post->main, 40)}}</span><span
-                                class="inline-block w-1/3">{{Str::limit($post->sub, 40)}}</span><span
-                                class="inline-block w-1/3">{{Str::limit($post->text, 40)}}</span></p>
+                                class="inline-block text-center w-1/3 max-lg:hidden">{{Str::limit($post->main, 40)}}</span><span
+                                class="inline-block text-center w-1/3 max-lg:hidden">{{Str::limit($post->sub, 40)}}</span><span
+                                class="inline-block text-center w-1/3 max-lg:hidden">{{Str::limit($post->text, 40)}}</span>
+                                <span
+                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->main, 10)}}</span><span
+                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->sub, 10)}}</span><span
+                                class="inline-block text-center w-1/3 lg:hidden">{{Str::limit($post->text, 10)}}</span></p>
                     </li>
                 </label>
                 @endforeach
