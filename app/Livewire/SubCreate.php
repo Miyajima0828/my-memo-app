@@ -113,7 +113,6 @@ class SubCreate extends Component
     ->where('sub.id','=',"$nowSubId")
     ->where('sub','=', "$nowSub")
     ->update(['updated_at' => Carbon::now()]);
-    // $this->dispatch('TabSelect');
     return redirect()->route('dashboard');
     }
     public function render()

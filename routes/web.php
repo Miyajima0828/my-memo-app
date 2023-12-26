@@ -31,8 +31,3 @@ Route::middleware([
     
 });
 
-
-// Route::get('/index', [PostController::class, 'index'])
-//     ->name('index');
-// /categoriesとURLに入力したら、categories.bladeが開くようにする
-// Route::get('/dashboard/categories', [AppController::class, 'getAll'])->name('categories');

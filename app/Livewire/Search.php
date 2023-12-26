@@ -26,9 +26,6 @@ class Search extends Component
         
         return view('livewire.search');
     }
-    public function test() {
-        // dd($this);
-    }
 
     public function getKeyword() {
         $query = Main::query();
@@ -47,14 +44,12 @@ class Search extends Component
             $this->posts = $query->get();
         }
         
-        // dd($this->keyword);
 
         
     }
     public function searchReset(){
         $this->setKeyword = $this->keyword;
         $this->reset('keyword');
-        // dd($this);
     }
     public function setWord(){
         if($this->setKeyword){
@@ -77,7 +72,6 @@ class Search extends Component
             ->where('sub','=', "$nowSub")
             ->update(['updated_at' => Carbon::now()]);
 
-        // $this->dispatch('TabSelect');
         return redirect()->route('dashboard');
 
 
