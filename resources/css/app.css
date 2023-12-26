@@ -19,7 +19,7 @@
 /*タブのスタイル*/
 .tab_item {
     width: calc(100%/5);
-    height: 3em;
+    height: 2.8em;
     border-bottom: 3px solid #5ab4bd;
     background-color: #d9d9d9;
     /* line-height: 3vh; */
@@ -99,4 +99,31 @@ input[name="tab_item"] {
     background-color: #ccc;
     border-radius: .5vh;
 }
+#menu {
+    -ms-overflow-style: none;
+/*Firefoxへの対応*/
+    scrollbar-width: none;
+}
 
+/*Google Chrome、Safariへの対応*/
+#menu::-webkit-scrollbar{
+display: none;
+}
+
+.blinking{
+	-webkit-animation:blink 1.5s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}

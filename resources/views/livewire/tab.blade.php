@@ -2,7 +2,7 @@
         <form>
                 @if(!is_null($tabs))
 
-                <div class="flex items-center">
+                <div class="flex items-center relative">
                         @foreach($tabs as $key=>$data)
 
                         @if($key==0)
@@ -15,11 +15,13 @@
 
 
                         @endforeach
-
+                <p id="saveAreaLg" class="blinking w-full absolute top-9 left-0 bg-emerald-200 h-11 flex items-center justify-center text-xl font-bold rounded-b-2xl text-emerald-950 hidden lg:hidden">こちらをタップで保存</p>
+                <p id="saveArea" class="blinking w-full absolute top-9 left-0 bg-emerald-200 h-11 flex items-center justify-center text-xl font-bold rounded-b-2xl text-emerald-950 hidden max-lg:hidden">保存は&nbsp;<span class="border border-black">&nbsp;ctrl&nbsp;</span>&nbsp;+&nbsp;<span class="border border-black">&nbsp;S&nbsp;</span>&nbsp;もしくは、こちらをクリック</p>
                 </div>
+                
                 <div class="tab_content ">
                         @csrf
-                        <textarea style="height:86vh;" class="scrollbar w-full border-none resize-none text-xl" wire:change.self="saveText('{{$tabs[$checkedKey]['id']}}','{{$tabs[$checkedKey]['sub']}}')" wire:model.lazy="submitText">{{$submitText}}</textarea>
+                        <textarea id="myTextarea" style="height:86vh;" class="scrollbar w-full border-none resize-none text-xl" wire:change.self="saveText('{{$tabs[$checkedKey]['id']}}','{{$tabs[$checkedKey]['sub']}}')" wire:model.lazy="submitText" wire:keydown.ctrl.s="saveText('{{$tabs[$checkedKey]['id']}}','{{$tabs[$checkedKey]['sub']}}')" >{{$submitText}}</textarea>
                 </div>
 
                 @endif
