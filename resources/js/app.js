@@ -21,22 +21,21 @@ let textValue = textarea.value;
 document.addEventListener('DOMContentLoaded', function () {
   Livewire.on('select', (submitText) => {
     textValue = submitText[0];
-    console.log(textValue)
     cnt=0;
   });
 });
 textarea.addEventListener('input', function (event) {
 
   if (cnt === 0) {
-    document.getElementById('saveAreaLg').classList.toggle('hidden');
     document.getElementById('saveArea').classList.toggle('hidden');
+    document.getElementById('saveAreaLg').classList.toggle('hidden');
     cnt++;
 
   }
   if (textValue == textarea.value) {
     console.log(textValue);
-    document.getElementById('saveAreaLg').classList.toggle('hidden');
     document.getElementById('saveArea').classList.toggle('hidden');
+    document.getElementById('saveAreaLg').classList.toggle('hidden');
     cnt = 0;
   }
 });

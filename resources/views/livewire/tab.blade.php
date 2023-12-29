@@ -18,8 +18,7 @@
 
 
                         @endforeach
-                        <p id="saveArea"
-                                class="blinking w-full absolute top-9 left-0 bg-emerald-200 h-11 flex items-center justify-center text-xl font-bold rounded-b-2xl text-emerald-950 hidden max-lg:hidden">
+                        <p id="saveArea" class="blinking w-full absolute top-9 left-0 z-10 bg-emerald-200 h-11 flex items-center justify-center text-xl font-bold rounded-b-2xl text-emerald-950 hidden max-lg:hidden">
                                 保存は&nbsp;<span class="border border-black">&nbsp;ctrl&nbsp;</span>&nbsp;+&nbsp;<span
                                         class="border border-black">&nbsp;S&nbsp;</span>&nbsp;もしくは、こちらをクリック</p>
                 </div>
