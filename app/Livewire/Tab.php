@@ -38,7 +38,9 @@ class Tab extends Component
     {
         $this->checkedKey = $key;
         $this->submitText = $this->tabs[$this->checkedKey]['text'];
-        // dd($this);
+        $this->dispatch('select',$this->submitText);
+
+
 
     }
     public function saveToDatabase()
