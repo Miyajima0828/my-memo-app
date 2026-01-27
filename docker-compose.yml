@@ -1,0 +1,80 @@
+services:
+  # Nginx Webサーバー
+  nginx:
+    image: nginx:alpine
+    container_name: memo_nginx
+    ports:
+      - "${APP_PORT:-8000}:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - memo_network
+    restart: unless-stopped
+
+  # PHP-FPMアプリケーションサーバー
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: memo_php
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - memo_network
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE:-my_memo_app}
+      - DB_USERNAME=${DB_USERNAME:-memo_user}
+      - DB_PASSWORD=${DB_PASSWORD:-secret}
+
+  # MySQLデータベース
+  mysql:
+    image: mysql:5.7
+    container_name: memo_mysql
+    ports:
+      - "${MYSQL_PORT:-3307}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_DATABASE:-my_memo_app}
+      MYSQL_USER: ${DB_USERNAME:-memo_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+    networks:
+      - memo_network
+    restart: unless-stopped
+
+  # Node.js (Vite開発サーバー)
+  node:
+    image: node:21-alpine
+    container_name: memo_node
+    working_dir: /var/www/html
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - memo_network
+    tty: true
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+# ネットワーク定義
+networks:
+  memo_network:
+    driver: bridge
+
+# ボリューム定義
+volumes:
+  mysql_data:
+    driver: local
