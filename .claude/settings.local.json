@@ -3,7 +3,8 @@
     "allow": [
       "Bash(tree:*)",
       "Bash(bash scripts/check-ports.sh:*)",
-      "Bash(make setup:*)"
+      "Bash(make setup:*)",
+      "Bash(npm view:*)"
     ]
   }
 }
